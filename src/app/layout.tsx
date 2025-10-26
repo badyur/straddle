@@ -13,13 +13,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body className={inter.className}>
-        <header className="border-b bg-white">
-          <nav className="mx-auto max-w-5xl p-4 flex gap-4">
-            <a href="/" className="font-semibold">Главная</a>
-            <a href="/rules" className="text-neutral-600 hover:text-black">Правила</a>
-            <a href="/calculator" className="text-neutral-600 hover:text-black">Калькулятор</a>
+        {/* Хедер — тёмная поверхность + тонкая граница */}
+        <header className="border-b border-border bg-surface sticky top-0 z-40">
+          <nav className="mx-auto max-w-6xl p-4 flex gap-6">
+            <a href="/" className="font-semibold text-foreground hover:opacity-90">
+              Главная
+            </a>
+            <a href="/rules" className="text-muted hover:text-foreground">
+              Правила
+            </a>
+            <a href="/calculator" className="text-muted hover:text-foreground">
+              Калькулятор
+            </a>
           </nav>
         </header>
+
+        {/* Контент */}
         {children}
       </body>
     </html>

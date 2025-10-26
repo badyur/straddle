@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
+/* =========================================
+   🖤 ГЛОБАЛЬНАЯ ТЁМНАЯ ТЕМА (без светлой)
+   👉 Все цвета можно менять здесь централизованно
+========================================= */
 :root {
-  --background: #010219;
-  --foreground: #171717;
+  /* 🎯 Фон сайта */
+  --background: #010219; 
+
+  /* ✍ Общий текст */
+  --foreground: #eaeaea;
+
+  /* 📦 Карточки, таблицы, блоки */
+  --surface: #0a0a1a;
+
+  /* 📁 Более тёмная поверхность (например, шапка таблицы) */
+  --surface-2: #181818;
+
+  /* 🔘 Второстепенный текст */
+  --muted: #60a5fa;
+
+  /* 📏 Границы и разделители */
+  /*--border: #2a2a2a;*/
+
+  /* 🎨 Акцент (кнопки, активные табы) */
+  --accent: #3b82f6;               /* Можно заменить на другой цвет */
+  --accent-foreground: #0b1220;    /* Текст на акцентном фоне */
+
+  /* 📐 Радиусы и тени – необязательно, но полезно */
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 6px 24px rgba(0, 47, 255, 0.25);
 }
 
+/* =========================================
+   📦 Подключаем переменные как Tailwind-классы
+   После этого можно писать:
+   bg-surface, text-muted, border-border, bg-accent, etc
+========================================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =========================================
+   📄 Глобальные стили body
+========================================= */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; /* Можно сменить позже */
 }

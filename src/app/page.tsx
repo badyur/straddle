@@ -20,7 +20,7 @@ function fund(type: TourType, players: number, re: number) {
 function placePoints(totalFund: number, place: number, players: number) {
   const winners = Math.floor(players / 2);
   if (winners < 1 || place > winners) return 0;
-  const weight = winners - place + 1;              // 1-е место самый большой вес
+  const weight = winners - place + 1;
   const totalWeights = (winners * (winners + 1)) / 2;
   return Math.round((totalFund * weight) / totalWeights);
 }
@@ -35,7 +35,7 @@ function computeLeaderboard(s: Season) {
     const placements: Array<{ name: string; place: number; ko?: number }> =
       (t as any).placements ?? [];
 
-    if (!type || !playersCount || placements.length === 0) return; // нет данных — пропускаем
+    if (!type || !playersCount || placements.length === 0) return;
 
     const f = fund(type, playersCount, re);
 
@@ -72,16 +72,23 @@ export default function Home() {
   const table = useMemo(() => computeLeaderboard(current), [current]);
 
   return (
-    <main className="mx-auto max-w-5xl p-6 space-y-6">
-      <h1 className="text-3xl font-bold">Straddle Moscow — рейтинг</h1>
+    <main className="mx-auto max-w-6xl p-8 space-y-8">
+      <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+        Straddle Moscow — рейтинг
+      </h1>
 
       {/* Табы сезонов */}
-      <div className="flex gap-2 overflow-x-auto -mx-4 px-4">
+      <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
         {["Сезон 1", "Сезон 2", "Сезон 3"].map((t, i) => (
           <button
             key={t}
             onClick={() => setTab(i)}
-            className={`shrink-0 px-4 py-2 rounded-xl border ${tab === i ? "bg-black text-white" : ""}`}
+            className={`shrink-0 px-5 py-3 text-base rounded-2xl border border-border transition
+              ${
+                tab === i
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-surface text-foreground hover:bg-[#2A2A2A]"
+              }`}
           >
             {t}
           </button>
@@ -89,47 +96,68 @@ export default function Home() {
       </div>
 
       {/* Статы */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           ["Уникальных игроков", uniquePlayers],
           ["Турниров", tournamentsCount],
           ["Следующая игра", nextGameDate],
           ["Финал", finalDate],
         ].map(([label, val]) => (
-          <div key={label as string} className="rounded-2xl p-4 shadow bg-white">
-            <div className="text-xs text-neutral-500">{label}</div>
-            <div className="text-2xl font-semibold">{String(val)}</div>
+          <div
+            key={label as string}
+            className="rounded-2xl p-6 bg-surface border border-border shadow"
+          >
+            <div className="text-sm text-muted">{label}</div>
+            <div className="text-3xl md:text-4xl font-semibold text-foreground">
+              {String(val)}
+            </div>
           </div>
         ))}
       </div>
 
       {/* Таблица рейтинга — настоящая формула */}
-      <div className="overflow-x-auto rounded-2xl shadow">
-        <table className="min-w-[560px] w-full text-sm">
-          <thead className="bg-neutral-50">
+      <div className="overflow-x-auto rounded-2xl bg-surface border border-border shadow">
+        <table className="min-w-[640px] w-full text-base">
+          <thead className="bg-surface-2 text-foreground">
             <tr>
-              <th className="text-left p-3">Место</th>
-              <th className="text-left p-3">Игрок</th>
-              <th className="text-left p-3">Очки</th>
+              <th className="text-left p-4 font-medium">Место</th>
+              <th className="text-left p-4 font-medium">Игрок</th>
+              <th className="text-left p-4 font-medium">Очки</th>
             </tr>
           </thead>
           <tbody>
             {table.map((row, i) => (
-              <tr key={row.name} className="border-t">
-                <td className="p-3">#{i + 1}</td>
-                <td className="p-3">{row.name}</td>
-                <td className="p-3 font-medium">{row.points}</td>
+              <tr key={row.name} className="border-t border-border">
+                <td className="p-4 text-muted">#{i + 1}</td>
+                <td className="p-4 text-foreground">{row.name}</td>
+                <td className="p-4 font-semibold text-foreground">{row.points}</td>
               </tr>
             ))}
             {table.length === 0 && (
               <tr>
-                <td colSpan={3} className="p-4 text-center text-neutral-500">
+                <td colSpan={3} className="p-6 text-center text-muted">
                   Нет данных о местах турниров этого сезона
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* Быстрые ссылки */}
+      <div className="flex gap-4">
+        <a
+          href="/rules"
+          className="px-5 py-3 text-base rounded-2xl border border-border bg-surface text-foreground hover:bg-[#2A2A2A]"
+        >
+          Правила
+        </a>
+        <a
+          href="/calculator"
+          className="px-5 py-3 text-base rounded-2xl border border-border bg-surface text-foreground hover:bg-[#2A2A2A]"
+        >
+          Калькулятор
+        </a>
       </div>
     </main>
   );
