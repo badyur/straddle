@@ -13,22 +13,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru">
       <body className={inter.className}>
-        {/* Хедер — тёмная поверхность + тонкая граница */}
-        <header className="border-b border-border bg-surface sticky top-0 z-40">
-          <nav className="mx-auto max-w-6xl p-4 flex gap-6">
-            <a href="/" className="font-semibold text-foreground hover:opacity-90">
-              Главная
-            </a>
-            <a href="/rules" className="text-muted hover:text-foreground">
-              Правила
-            </a>
-            <a href="/calculator" className="text-muted hover:text-foreground">
-              Калькулятор
-            </a>
-          </nav>
-        </header>
+        <header className="border-b bg-surface-2">
+          <div className="mx-auto max-w-6xl p-4 flex items-center justify-between gap-6">
+            {/* ЛОГО + НАЗВАНИЕ */}
+            <div className="flex items-center gap-3">
+              {/* Заменить /straddle-logo.png на свой файл */}
+              <img
+                src="/straddle-logo.png"
+                alt="Straddle logo"
+                className="w-12 h-12 rounded-lg object-contain"
+              />
+              <span className="text-xl font-bold text-foreground">Straddle Moscow</span>
+            </div>
 
-        {/* Контент */}
+            {/* МЕНЮ */}
+            <nav className="flex gap-4 text-sm">
+              <a href="/" className="font-semibold hover:text-accent">
+                Главная
+              </a>
+              <a href="/rules" className="text-muted hover:text-accent">
+                Правила
+              </a>
+              <a href="/calculator" className="text-muted hover:text-accent">
+                Калькулятор
+              </a>
+            </nav>
+          </div>
+        </header>
         {children}
       </body>
     </html>

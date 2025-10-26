@@ -145,54 +145,75 @@ export default function Home() {
         ))}
       </div>
 
-      {/* ===== Таблица рейтинга ===== */}
-      <div className="overflow-x-auto rounded-2xl bg-surface border border-border shadow">
-        <table className="min-w-[640px] w-full text-base">
-          <thead className="bg-surface-2 text-foreground">
-            <tr>
-              <th className="text-left p-4 font-medium">Место</th>
-              <th className="text-left p-4 font-medium">Игрок</th>
-              <th className="text-left p-4 font-medium text-center md:text-left">Очки</th>
-            </tr>
-          </thead>
-          <tbody>
-            {table.map((row, i) => {
-              const rank = i + 1;
-              const isCut = i === 17;       // линия после 18-го
-              const afterCut = i === 18;    // дополнительный верхний отступ после линии
+{/* Таблица рейтинга — компактная на мобилке без горизонтального скролла */}
+<div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
+  <table className="w-full text-base table-fixed">
+    <thead className="bg-surface-2 text-foreground">
+      <tr>
+        <th className="text-left p-4 font-medium w-[64px]">Место</th>
+        <th className="text-left p-4 font-medium">
+          Игрок
+        </th>
+        {/* Отдельная колонка «Очки» только на md+ */}
+        <th className="text-left p-4 font-medium hidden md:table-cell w-[120px]">
+          Очки
+        </th>
+      </tr>
+    </thead>
 
-              return (
-                <tr
-                  key={row.name}
-                  className={`border-t border-border transition-colors hover:bg-[#202020]
-                    ${isCut ? "border-b-4 border-b-accent" : ""}`}
-                >
-                  <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
-                    <RankBadge rank={rank} />
-                  </td>
-                  <td className={`p-4 text-foreground ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
-                    <span className="font-semibold">{row.name}</span>
-                  </td>
-                  <td
-                    className={`p-4 font-semibold text-foreground text-center md:text-left ${
-                      isCut ? "pb-6" : ""
-                    } ${afterCut ? "pt-6" : ""}`}
-                  >
-                    {row.points}
-                  </td>
-                </tr>
-              );
-            })}
-            {table.length === 0 && (
-              <tr>
-                <td colSpan={3} className="p-6 text-center text-muted">
-                  Нет данных о местах турниров этого сезона
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+    <tbody>
+      {table.map((row, i) => {
+        const rank = i + 1;
+        const isCut = i === 17;     // жирная линия после 18-го
+        const afterCut = i === 18;  // отступ над 19-й
+
+        return (
+          <tr
+            key={row.name}
+            className={`border-t border-border transition-colors hover:bg-[#202020]
+              ${isCut ? "border-b-4 border-b-accent" : ""}`}
+          >
+            {/* Место */}
+            <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+              <RankBadge rank={rank} />
+            </td>
+
+            {/* Игрок + очки (на мобилке очки в этой же ячейке справа) */}
+            <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-foreground font-semibold truncate">
+                  {row.name}
+                </span>
+                {/* Очки на мобильных */}
+                <span className="md:hidden font-semibold text-foreground/90 shrink-0">
+                  {row.points}
+                </span>
+              </div>
+            </td>
+
+            {/* Отдельная колонка очков на md+ */}
+            <td
+              className={`hidden md:table-cell p-4 font-semibold text-foreground text-right ${
+                isCut ? "pb-6" : ""
+              } ${afterCut ? "pt-6" : ""}`}
+            >
+              {row.points}
+            </td>
+          </tr>
+        );
+      })}
+
+      {table.length === 0 && (
+        <tr>
+          <td colSpan={3} className="p-6 text-center text-muted">
+            Нет данных о местах турниров этого сезона
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
     </main>
   );
 }
