@@ -11,6 +11,7 @@ type TourType = "classic" | "jot" | "bounty";
 
 const seasons: Season[] = [season1, season2, season3];
 
+/** ===== Формула (как у тебя) ===== */
 function fund(type: TourType, players: number, re: number) {
   if (type === "classic") return 10 * players + 10 * re;
   if (type === "jot") return 10 * players + 15 * re;
@@ -60,6 +61,35 @@ function uniqPlayersOfSeason(s: Season) {
   return Array.from(set);
 }
 
+/** ===== Медаль для места ===== */
+function RankBadge({ rank }: { rank: number }) {
+  const base =
+    "inline-flex items-center justify-center w-9 h-9 rounded-full font-bold text-[0.95rem] shadow transition-transform";
+  if (rank === 1)
+    return (
+      <span className={`${base} bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-[#1f2937]`}>
+        1
+      </span>
+    );
+  if (rank === 2)
+    return (
+      <span className={`${base} bg-gradient-to-br from-[#94a3b8] to-[#64748b] text-[#1f2937]`}>
+        2
+      </span>
+    );
+  if (rank === 3)
+    return (
+      <span className={`${base} bg-gradient-to-br from-[#f97316] to-[#ea580c] text-[#1f2937]`}>
+        3
+      </span>
+    );
+  return (
+    <span className={`${base} bg-surface-2 text-foreground/80`}>
+      {rank}
+    </span>
+  );
+}
+
 export default function Home() {
   const [tab, setTab] = useState(0);
   const current = seasons[tab];
@@ -74,10 +104,10 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl p-8 space-y-8">
       <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-        Straddle Moscow — рейтинг
+        Straddle Klim — рейтинг
       </h1>
 
-      {/* Табы сезонов */}
+      {/* ===== Табы сезонов ===== */}
       <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
         {["Сезон 1", "Сезон 2", "Сезон 3"].map((t, i) => (
           <button
@@ -95,7 +125,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Статы */}
+      {/* ===== Карточки со статами (мягкие, наводится ВСЯ карточка) ===== */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           ["Уникальных игроков", uniquePlayers],
@@ -105,7 +135,7 @@ export default function Home() {
         ].map(([label, val]) => (
           <div
             key={label as string}
-            className="rounded-2xl p-6 bg-surface border border-border shadow"
+            className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition will-change-transform backdrop-blur-sm"
           >
             <div className="text-sm text-muted">{label}</div>
             <div className="text-3xl md:text-4xl font-semibold text-foreground">
@@ -115,24 +145,44 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Таблица рейтинга — настоящая формула */}
+      {/* ===== Таблица рейтинга ===== */}
       <div className="overflow-x-auto rounded-2xl bg-surface border border-border shadow">
         <table className="min-w-[640px] w-full text-base">
           <thead className="bg-surface-2 text-foreground">
             <tr>
               <th className="text-left p-4 font-medium">Место</th>
               <th className="text-left p-4 font-medium">Игрок</th>
-              <th className="text-left p-4 font-medium">Очки</th>
+              <th className="text-left p-4 font-medium text-center md:text-left">Очки</th>
             </tr>
           </thead>
           <tbody>
-            {table.map((row, i) => (
-              <tr key={row.name} className="border-t border-border">
-                <td className="p-4 text-muted">#{i + 1}</td>
-                <td className="p-4 text-foreground">{row.name}</td>
-                <td className="p-4 font-semibold text-foreground">{row.points}</td>
-              </tr>
-            ))}
+            {table.map((row, i) => {
+              const rank = i + 1;
+              const isCut = i === 17;       // линия после 18-го
+              const afterCut = i === 18;    // дополнительный верхний отступ после линии
+
+              return (
+                <tr
+                  key={row.name}
+                  className={`border-t border-border transition-colors hover:bg-[#202020]
+                    ${isCut ? "border-b-4 border-b-accent" : ""}`}
+                >
+                  <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+                    <RankBadge rank={rank} />
+                  </td>
+                  <td className={`p-4 text-foreground ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+                    <span className="font-semibold">{row.name}</span>
+                  </td>
+                  <td
+                    className={`p-4 font-semibold text-foreground text-center md:text-left ${
+                      isCut ? "pb-6" : ""
+                    } ${afterCut ? "pt-6" : ""}`}
+                  >
+                    {row.points}
+                  </td>
+                </tr>
+              );
+            })}
             {table.length === 0 && (
               <tr>
                 <td colSpan={3} className="p-6 text-center text-muted">
@@ -142,22 +192,6 @@ export default function Home() {
             )}
           </tbody>
         </table>
-      </div>
-
-      {/* Быстрые ссылки */}
-      <div className="flex gap-4">
-        <a
-          href="/rules"
-          className="px-5 py-3 text-base rounded-2xl border border-border bg-surface text-foreground hover:bg-[#2A2A2A]"
-        >
-          Правила
-        </a>
-        <a
-          href="/calculator"
-          className="px-5 py-3 text-base rounded-2xl border border-border bg-surface text-foreground hover:bg-[#2A2A2A]"
-        >
-          Калькулятор
-        </a>
       </div>
     </main>
   );
