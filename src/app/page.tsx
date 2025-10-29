@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
+import Link from 'next/link';
+import seasonList from "@/data/season-list.json"; // импорт из json
 import season1 from "@/data/season-1.json";
 import season2 from "@/data/season-2.json";
 import season3 from "@/data/season-3.json";
@@ -181,9 +182,12 @@ export default function Home() {
             {/* Игрок + очки (на мобилке очки в этой же ячейке справа) */}
             <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
               <div className="flex items-center justify-between gap-3">
-                <span className="text-foreground font-semibold truncate">
-                  {row.name}
-                </span>
+<Link
+  href={`/player/${encodeURIComponent(row.name)}`}
+  className="text-foreground font-semibold truncate hover:text-accent transition-colors cursor-pointer"
+>
+  {row.name}
+</Link>
                 {/* Очки на мобильных */}
                 <span className="md:hidden font-semibold text-foreground/90 shrink-0">
                   {row.points}
