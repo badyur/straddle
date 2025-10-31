@@ -124,7 +124,7 @@ export default function RulesPage() {
       <section className="mb-8">
         <h3 className="text-xl font-semibold mb-2">♠️ «Рука Клуба»</h3>
         <p>
-          (♣️♣️ — «рука Михаила Сёмина»)
+          (Туз крести + Семёрка крести (A♣ 7♣) — «рука Михаила Сёмина»)
           <br />
           Выиграйте раздачу с этой рукой после флопа и получите ➕5️⃣ Big Blind!
         </p>
