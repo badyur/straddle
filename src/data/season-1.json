@@ -1,44 +1,36 @@
 {
   "season": 1,
-  "finalDate": "2025-10-26",
+  "finalDate": "2025-12-31",
   "nextGameDate": "2025-10-19",
   "tournaments": [
     {
       "id": 1,
-      "date": "2025-09-10",
+      "date": "2025-11-11",
       "type": "classic",
       "playersCount": 20,
       "reentries": 6,
       "placements": [
-        { "name": "Юрий", "place": 1 },
-        { "name": "Ivan", "place": 2 },
-        { "name": "Майкл Майерс", "place": 3 },
-        { "name": "Чаки", "place": 4 },
-        { "name": "Пеннивайз", "place": 5 }
+        { "name": "KHOMENKO", "place": 1 },
+        { "name": "Олегатор 3000", "place": 2 },
+        { "name": "Мария", "place": 3 },
+        { "name": "Лешанич", "place": 4 },
+        { "name": "Юра", "place": 5 },
+        { "name": "Владимир", "place": 6 },
+        { "name": "Эмиль", "place": 6 },
+        { "name": "Евгений", "place": 6 }
+
       ]
     },
-    {
-      "id": 2,
-      "date": "2025-09-17",
-      "type": "bounty",
-      "playersCount": 18,
-      "reentries": 4,
-      "placements": [
-        { "name": "Призрачное Лицо", "place": 1, "ko": 3 },
-        { "name": "Чаки", "place": 2, "ko": 1 },
-        { "name": "Юрий", "place": 3, "ko": 2 },
-        { "name": "Аннабель", "place": 4, "ko": 0 },
-        { "name": "Ivan", "place": 5, "ko": 1 }
-      ]
-    }
+
   ],
   "players": [
-    "Юрий",
-    "Ivan",
-    "Майкл Майерс",
-    "Чаки",
-    "Пеннивайз",
-    "Призрачное Лицо",
-    "Аннабель"
+    "KHOMENKO",
+    "Олегатор 3000",
+    "Мария",
+    "Лешанич",
+    "Юра",
+    "Владимир",
+    "Эмиль",
+    "Евгений'
   ]
 }
