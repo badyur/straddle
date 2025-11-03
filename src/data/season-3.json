@@ -1,0 +1,36 @@
+{
+  "season": 1,
+  "finalDate": "2025-12-31",
+  "nextGameDate": "2025-10-19",
+  "tournaments": [
+    {
+      "id": 1,
+      "date": "2025-11-11",
+      "type": "classic",
+      "playersCount": 20,
+      "reentries": 6,
+      "placements": [
+        { "name": "KHOMENKO", "place": 1 },
+        { "name": "Олегатор 3000", "place": 2 },
+        { "name": "Мария", "place": 3 },
+        { "name": "Лешанич", "place": 4 },
+        { "name": "Юра", "place": 5 },
+        { "name": "Владимир", "place": 6 },
+        { "name": "Эмиль", "place": 6 },
+        { "name": "Евгений", "place": 6 }
+
+      ]
+    },
+
+  ],
+  "players": [
+    "KHOMENKO",
+    "Олегатор 3000",
+    "Мария",
+    "Лешанич",
+    "Юра",
+    "Владимир",
+    "Эмиль",
+    "Евгений"
+  ]
+}
