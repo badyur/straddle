@@ -18,10 +18,8 @@
         { "name": "Владимир", "place": 6 },
         { "name": "Эмиль", "place": 6 },
         { "name": "Евгений", "place": 6 }
-
       ]
-    },
-
+    }
   ],
   "players": [
     "KHOMENKO",
