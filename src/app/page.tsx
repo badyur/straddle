@@ -10,7 +10,7 @@ import season3 from "@/data/season-3.json";
 type Season = typeof season1;
 type TourType = "classic" | "jot" | "bounty";
 
-const seasons: Season[] = [season1, season2, season3];
+const seasons: Season[] = [season1];
 
 /** ===== Формула (как у тебя) ===== */
 function fund(type: TourType, players: number, re: number) {
