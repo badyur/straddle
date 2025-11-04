@@ -1,50 +1,64 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from 'next/link';
-import seasonList from "@/data/season-list.json"; // импорт из json
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import season1 from "@/data/season-1.json";
-import season2 from "@/data/season-2.json";
-import season3 from "@/data/season-3.json";
 
-type Season = typeof season1;
-type TourType = "classic" | "jot" | "bounty";
+type Placement = { name: string; place: number; ko?: number };
+type Tournament = {
+  id: number;
+  date?: string;
+  type?: "classic" | "jot" | "bounty";
+  playersCount?: number;
+  reentries?: number;
+  placements?: Placement[];
+  players?: string[];
+};
+type Season = {
+  season?: number;
+  finalDate?: string;
+  nextGameDate?: string;
+  tournaments: Tournament[];
+  players?: string[];
+};
 
-const seasons: Season[] = [season1];
+const seasons: Season[] = [season1]; // сюда можно добавлять season2, season3 и т.д.
 
-/** ===== Формула (как у тебя) ===== */
-function fund(type: TourType, players: number, re: number) {
-  if (type === "classic") return 10 * players + 10 * re;
-  if (type === "jot") return 10 * players + 15 * re;
-  return 5 * players + 5 * re; // bounty
+/** Тип режима подсчёта */
+type ScoringMode = "simple" | "organizer";
+
+/** ===== Таблицы очков для двух режимов ===== */
+function pointsForPlace(place: number, mode: ScoringMode) {
+  if (mode === "simple") {
+    if (place === 1) return 10;
+    if (place === 2) return 7;
+    if (place === 3) return 5;
+    if (place === 4) return 3;
+    if (place === 5) return 2;
+    return 1; // 6 и ниже
+  }
+
+  // organizer: 1->100, 2->50, 3->30, 4->20, 5->10, 6+ -> 0
+  if (place === 1) return 100;
+  if (place === 2) return 50;
+  if (place === 3) return 30;
+  if (place === 4) return 20;
+  if (place === 5) return 10;
+  return 0;
 }
 
-function placePoints(totalFund: number, place: number, players: number) {
-  const winners = Math.floor(players / 2);
-  if (winners < 1 || place > winners) return 0;
-  const weight = winners - place + 1;
-  const totalWeights = (winners * (winners + 1)) / 2;
-  return Math.round((totalFund * weight) / totalWeights);
-}
-
-function computeLeaderboard(s: Season) {
+/** ===== Подсчёт лидерборда: базовые очки + KO (опционально) ===== */
+function computeLeaderboard(s: Season, mode: ScoringMode, includeKO: boolean) {
   const points = new Map<string, number>();
 
-  s.tournaments.forEach((t) => {
-    const type = (t as any).type as TourType | undefined;
-    const playersCount = (t as any).playersCount ?? (t as any).players?.length ?? 0;
-    const re = (t as any).reentries ?? 0;
-    const placements: Array<{ name: string; place: number; ko?: number }> =
-      (t as any).placements ?? [];
-
-    if (!type || !playersCount || placements.length === 0) return;
-
-    const f = fund(type, playersCount, re);
+  (s.tournaments || []).forEach((t) => {
+    const placements = t.placements ?? [];
+    if (!placements || placements.length === 0) return;
 
     placements.forEach((p) => {
-      const base = placePoints(f, p.place, playersCount);
-      const bounty = type === "bounty" ? 5 * (p.ko ?? 0) : 0;
-      const total = base + bounty;
+      const base = pointsForPlace(p.place, mode);
+      const koBonus = includeKO ? (p.ko ?? 0) : 0; // +1 за каждый KO (если включено)
+      const total = base + koBonus;
       if (total <= 0) return;
       points.set(p.name, (points.get(p.name) ?? 0) + total);
     });
@@ -55,10 +69,15 @@ function computeLeaderboard(s: Season) {
     .sort((a, b) => b.points - a.points);
 }
 
+/** ===== Уникальные игроки сезона ===== */
 function uniqPlayersOfSeason(s: Season) {
   if (Array.isArray(s.players) && s.players.length) return s.players;
   const set = new Set<string>();
-  s.tournaments.forEach((t: any) => t.players?.forEach((p: string) => set.add(p)));
+  (s.tournaments || []).forEach((t: any) =>
+    (t.players || t.placements || []).forEach((p: any) =>
+      typeof p === "string" ? set.add(p) : set.add(p.name)
+    )
+  );
   return Array.from(set);
 }
 
@@ -68,65 +87,114 @@ function RankBadge({ rank }: { rank: number }) {
     "inline-flex items-center justify-center w-9 h-9 rounded-full font-bold text-[0.95rem] shadow transition-transform";
   if (rank === 1)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-[#1f2937]`}>
-        1
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-[#1f2937]`}>1</span>
     );
   if (rank === 2)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#94a3b8] to-[#64748b] text-[#1f2937]`}>
-        2
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#94a3b8] to-[#64748b] text-[#1f2937]`}>2</span>
     );
   if (rank === 3)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#f97316] to-[#ea580c] text-[#1f2937]`}>
-        3
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#f97316] to-[#ea580c] text-[#1f2937]`}>3</span>
     );
-  return (
-    <span className={`${base} bg-surface-2 text-foreground/80`}>
-      {rank}
-    </span>
-  );
+  return <span className={`${base} bg-surface-2 text-foreground/80`}>{rank}</span>;
 }
 
 export default function Home() {
   const [tab, setTab] = useState(0);
-  const current = seasons[tab];
+
+  // режим подсчёта очков: 'simple' или 'organizer'
+  const [mode, setMode] = useState<ScoringMode>("simple");
+  // учитывать KO или нет — по-умолчанию true для simple, false для organizer
+  const [includeKO, setIncludeKO] = useState<boolean>(true);
+
+  // Если сменили режим — подставим удобные дефолты для includeKO
+  useEffect(() => {
+    setIncludeKO(mode === "simple" ? true : false);
+  }, [mode]);
+
+  // Защита на случай, если сезонов меньше, чем tab
+  useEffect(() => {
+    if (tab >= seasons.length) setTab(0);
+  }, [tab]);
+
+  const current = seasons[tab] ?? (seasons.length ? seasons[0] : ({} as Season));
 
   const uniquePlayers = useMemo(() => uniqPlayersOfSeason(current).length, [current]);
-  const tournamentsCount = current.tournaments.length;
-  const nextGameDate = (current as any).nextGameDate ?? "—";
-  const finalDate = (current as any).finalDate ?? "—";
+  const tournamentsCount = current.tournaments?.length ?? 0;
+  const nextGameDate = current.nextGameDate ?? "—";
+  const finalDate = current.finalDate ?? "—";
 
-  const table = useMemo(() => computeLeaderboard(current), [current]);
+  const table = useMemo(() => computeLeaderboard(current, mode, includeKO), [current, mode, includeKO]);
 
   return (
-    <main className="mx-auto max-w-6xl p-8 space-y-8">
-      <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-        Straddle Klim — рейтинг
-      </h1>
+    <main className="mx-auto max-w-6xl p-8 space-y-6">
+      <h1 className="text-4xl md:text-5xl font-bold text-foreground">Straddle Klim — рейтинг</h1>
 
-      {/* ===== Табы сезонов ===== */}
-      <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
-        {["Сезон 1", "Сезон 2", "Сезон 3"].map((t, i) => (
+      {/* ===== Панель управления схемой подсчёта ===== */}
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
+        <div className="flex gap-3">
+          {/* Кнопки переключения режима */}
           <button
-            key={t}
-            onClick={() => setTab(i)}
-            className={`shrink-0 px-5 py-3 text-base rounded-2xl border border-border transition
-              ${
-                tab === i
-                  ? "bg-accent text-accent-foreground"
-                  : "bg-surface text-foreground hover:bg-[#2A2A2A]"
-              }`}
+            onClick={() => setMode("simple")}
+            className={`px-4 py-2 rounded-md border ${
+              mode === "simple" ? "bg-accent text-accent-foreground" : "bg-surface"
+            }`}
           >
-            {t}
+            Наша (1→10 ...)
           </button>
-        ))}
+          <button
+            onClick={() => setMode("organizer")}
+            className={`px-4 py-2 rounded-md border ${
+              mode === "organizer" ? "bg-accent text-accent-foreground" : "bg-surface"
+            }`}
+          >
+            Схема организатора (100,50...)
+          </button>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <label className="inline-flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={includeKO}
+              onChange={(e) => setIncludeKO(e.target.checked)}
+              className="form-checkbox"
+            />
+            <span className="text-sm">Учитывать KO (+1 за выбивание)</span>
+          </label>
+
+          <div className="text-sm text-muted">
+            Текущий режим: <b className="ml-1">{mode === "simple" ? "Наша" : "Организатор"}</b>
+          </div>
+        </div>
       </div>
 
-      {/* ===== Карточки со статами (мягкие, наводится ВСЯ карточка) ===== */}
+      {/* ===== Табы сезонов (динамически из массива seasons) ===== */}
+      <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
+        {seasons.length > 0 ? (
+          seasons.map((s, i) => {
+            const label = `Сезон ${s.season ?? i + 1}`;
+            return (
+              <button
+                key={label}
+                onClick={() => setTab(i)}
+                className={`shrink-0 px-5 py-3 text-base rounded-2xl border border-border transition ${
+                  tab === i
+                    ? "bg-accent text-accent-foreground"
+                    : "bg-surface text-foreground hover:bg-[#2A2A2A]"
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })
+        ) : (
+          <div className="text-muted px-4 py-3">Нет доступных сезонов</div>
+        )}
+      </div>
+
+      {/* ===== Стат-карточки ===== */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           ["Уникальных игроков", uniquePlayers],
@@ -139,85 +207,73 @@ export default function Home() {
             className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition will-change-transform backdrop-blur-sm"
           >
             <div className="text-sm text-muted">{label}</div>
-            <div className="text-3xl md:text-4xl font-semibold text-foreground">
-              {String(val)}
-            </div>
+            <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(val)}</div>
           </div>
         ))}
       </div>
 
-{/* Таблица рейтинга — компактная на мобилке без горизонтального скролла */}
-<div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
-  <table className="w-full text-base table-fixed">
-    <thead className="bg-surface-2 text-foreground">
-      <tr>
-        <th className="text-left p-4 font-medium w-[64px]">Место</th>
-        <th className="text-left p-4 font-medium">
-          Игрок
-        </th>
-        {/* Отдельная колонка «Очки» только на md+ */}
-        <th className="text-left p-4 font-medium hidden md:table-cell w-[120px]">
-          Очки
-        </th>
-      </tr>
-    </thead>
+      {/* ===== Таблица рейтинга ===== */}
+      <div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
+        <table className="w-full text-base table-fixed">
+          <thead className="bg-surface-2 text-foreground">
+            <tr>
+              <th className="text-left p-4 font-medium w-[64px]">Место</th>
+              <th className="text-left p-4 font-medium">Игрок</th>
+              <th className="text-left p-4 font-medium hidden md:table-cell w-[120px]">Очки</th>
+            </tr>
+          </thead>
 
-    <tbody>
-      {table.map((row, i) => {
-        const rank = i + 1;
-        const isCut = i === 17;     // жирная линия после 18-го
-        const afterCut = i === 18;  // отступ над 19-й
+          <tbody>
+            {table.map((row, i) => {
+              const rank = i + 1;
+              const isCut = i === 17; // жирная линия после 18-го
+              const afterCut = i === 18;
 
-        return (
-          <tr
-            key={row.name}
-            className={`border-t border-border transition-colors hover:bg-[#202020]
-              ${isCut ? "border-b-4 border-b-accent" : ""}`}
-          >
-            {/* Место */}
-            <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
-              <RankBadge rank={rank} />
-            </td>
+              return (
+                <tr
+                  key={row.name}
+                  className={`border-t border-border transition-colors hover:bg-[#202020] ${
+                    isCut ? "border-b-4 border-b-accent" : ""
+                  }`}
+                >
+                  <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+                    <RankBadge rank={rank} />
+                  </td>
 
-            {/* Игрок + очки (на мобилке очки в этой же ячейке справа) */}
-            <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
-              <div className="flex items-center justify-between gap-3">
-<Link
-  href={`/player/${encodeURIComponent(row.name)}`}
-  className="text-foreground font-semibold truncate hover:text-accent transition-colors cursor-pointer"
->
-  {row.name}
-</Link>
-                {/* Очки на мобильных */}
-                <span className="md:hidden font-semibold text-foreground/90 shrink-0">
-                  {row.points}
-                </span>
-              </div>
-            </td>
+                  <td className={`p-4 ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <Link
+                        href={`/player/${encodeURIComponent(row.name)}`}
+                        className="text-foreground font-semibold truncate hover:text-accent transition-colors cursor-pointer"
+                      >
+                        {row.name}
+                      </Link>
 
-            {/* Отдельная колонка очков на md+ */}
-            <td
-              className={`hidden md:table-cell p-4 font-semibold text-foreground text-right ${
-                isCut ? "pb-6" : ""
-              } ${afterCut ? "pt-6" : ""}`}
-            >
-              {row.points}
-            </td>
-          </tr>
-        );
-      })}
+                      <span className="md:hidden font-semibold text-foreground/90 shrink-0">{row.points}</span>
+                    </div>
+                  </td>
 
-      {table.length === 0 && (
-        <tr>
-          <td colSpan={3} className="p-6 text-center text-muted">
-            Нет данных о местах турниров этого сезона
-          </td>
-        </tr>
-      )}
-    </tbody>
-  </table>
-</div>
+                  <td
+                    className={`hidden md:table-cell p-4 font-semibold text-foreground text-right ${
+                      isCut ? "pb-6" : ""
+                    } ${afterCut ? "pt-6" : ""}`}
+                  >
+                    {row.points}
+                  </td>
+                </tr>
+              );
+            })}
 
+            {table.length === 0 && (
+              <tr>
+                <td colSpan={3} className="p-6 text-center text-muted">
+                  Нет данных о местах турниров этого сезона
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </main>
   );
 }
