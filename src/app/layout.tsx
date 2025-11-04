@@ -35,9 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/rules" className="text-muted hover:text-foreground whitespace-nowrap">
                 Правила
               </a>
-              <a href="/calculator" className="text-muted hover:text-foreground whitespace-nowrap">
+{/*              <a href="/calculator" className="text-muted hover:text-foreground whitespace-nowrap">
                 Калькулятор
-              </a>
+              </a>*/}
             </nav>
           </div>
         </header>
