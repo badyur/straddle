@@ -36,24 +36,35 @@ function pointsForPlaceOrganizer(place: number) {
   return 0;
 }
 
-/** ===== Подсчёт лидерборда (только по схеме организатора, KO не учитываются) ===== */
+/** ===== Подсчёт лидерборда (только по схеме организатора), теперь включаем всех игроков сезона (включая 0) ===== */
 function computeLeaderboardOrganizer(s: Season) {
   const points = new Map<string, number>();
 
+  // Считаем очки
   (s.tournaments || []).forEach((t) => {
     const placements = t.placements ?? [];
     if (!placements || placements.length === 0) return;
 
     placements.forEach((p) => {
       const base = pointsForPlaceOrganizer(p.place);
-      if (base <= 0) return;
+      // прибавляем базовые очки (даже если 0, чтобы ключ появился)
       points.set(p.name, (points.get(p.name) ?? 0) + base);
     });
   });
 
+  // Убедимся, что все игроки сезона присутствуют в мапе (включая тех, кто не в placements)
+  const allPlayers = uniqPlayersOfSeason(s);
+  allPlayers.forEach((name) => {
+    if (!points.has(name)) points.set(name, 0);
+  });
+
   return Array.from(points.entries())
     .map(([name, pts]) => ({ name, points: pts }))
-    .sort((a, b) => b.points - a.points);
+    .sort((a, b) => {
+      // Сортируем по очкам по убыванию, при равенстве — по имени (чтобы порядок детерминирован)
+      if (b.points !== a.points) return b.points - a.points;
+      return a.name.localeCompare(b.name);
+    });
 }
 
 /** ===== Уникальные игроки сезона ===== */
@@ -74,21 +85,15 @@ function RankBadge({ rank }: { rank: number }) {
     "inline-flex items-center justify-center w-9 h-9 rounded-full font-bold text-[0.95rem] shadow transition-transform";
   if (rank === 1)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-[#1f2937]`}>
-        1
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-[#1f2937]`}>1</span>
     );
   if (rank === 2)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#94a3b8] to-[#64748b] text-[#1f2937]`}>
-        2
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#94a3b8] to-[#64748b] text-[#1f2937]`}>2</span>
     );
   if (rank === 3)
     return (
-      <span className={`${base} bg-gradient-to-br from-[#f97316] to-[#ea580c] text-[#1f2937]`}>
-        3
-      </span>
+      <span className={`${base} bg-gradient-to-br from-[#f97316] to-[#ea580c] text-[#1f2937]`}>3</span>
     );
   return <span className={`${base} bg-surface-2 text-foreground/80`}>{rank}</span>;
 }
@@ -106,19 +111,19 @@ export default function Home() {
   const uniquePlayers = useMemo(() => uniqPlayersOfSeason(current).length, [current]);
   const tournamentsCount = current.tournaments?.length ?? 0;
   const nextGameDate = current.nextGameDate ?? "—";
-  const finalDate = current.finalDate ?? "—";
+  // finalDate больше не используется / карточка "Финал" убрана
 
   const table = useMemo(() => computeLeaderboardOrganizer(current), [current]);
 
   return (
     <main className="mx-auto max-w-6xl p-8 space-y-6">
-      <h1 className="text-4xl md:text-5xl font-bold text-foreground">The NUTS club — рейтинг</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-foreground">Straddle Klim — рейтинг</h1>
 
-      {/* ===== Табы сезонов (динамически) ===== */}
+      {/* ===== Табы сезонов (динамически). Season 1 → "Ноябрь" ===== */}
       <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
         {seasons.length > 0 ? (
           seasons.map((s, i) => {
-            const label = `Сезон ${s.season ?? i + 1}`;
+            const label = s.season === 1 ? "Ноябрь" : `Сезон ${s.season ?? i + 1}`;
             return (
               <button
                 key={label}
@@ -136,13 +141,12 @@ export default function Home() {
         )}
       </div>
 
-      {/* ===== Стат-карточки ===== */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* ===== Стат-карточки (убрана карточка "Финал") ===== */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {[
           ["Уникальных игроков", uniquePlayers],
           ["Турниров", tournamentsCount],
-          ["Следующая игра", nextGameDate],
-          ["Финал", finalDate],
+          ["Следующая игра", nextGameDate]
         ].map(([label, val]) => (
           <div
             key={label as string}
@@ -154,7 +158,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* ===== Таблица рейтинга ===== */}
+      {/* ===== Таблица рейтинга (включая нулевые строки) ===== */}
       <div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
         <table className="w-full text-base table-fixed">
           <thead className="bg-surface-2 text-foreground">
@@ -170,6 +174,7 @@ export default function Home() {
               const rank = i + 1;
               const isCut = i === 17; // жирная линия после 18-го
               const afterCut = i === 18;
+              const isZero = row.points === 0;
 
               return (
                 <tr
@@ -186,7 +191,9 @@ export default function Home() {
                     <div className="flex items-center justify-between gap-3">
                       <Link
                         href={`/player/${encodeURIComponent(row.name)}`}
-                        className="text-foreground font-semibold truncate hover:text-accent transition-colors cursor-pointer"
+                        className={`text-foreground font-semibold truncate hover:text-accent transition-colors cursor-pointer ${
+                          isZero ? "opacity-60" : ""
+                        }`}
                       >
                         {row.name}
                       </Link>
@@ -198,7 +205,7 @@ export default function Home() {
                   <td
                     className={`hidden md:table-cell p-4 font-semibold text-foreground text-right ${
                       isCut ? "pb-6" : ""
-                    } ${afterCut ? "pt-6" : ""}`}
+                    } ${afterCut ? "pt-6" : ""} ${isZero ? "opacity-60" : ""}`}
                   >
                     {row.points}
                   </td>
