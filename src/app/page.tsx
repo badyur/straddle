@@ -37,34 +37,43 @@ function pointsForPlaceOrganizer(place: number) {
 }
 
 /** ===== Подсчёт лидерборда (только по схеме организатора), теперь включаем всех игроков сезона (включая 0) ===== */
+/** ===== Подсчёт лидерборда (с учётом tie-break по лучшему месту, затем по имени) ===== */
 function computeLeaderboardOrganizer(s: Season) {
   const points = new Map<string, number>();
+  const bestPlace = new Map<string, number>(); // для tie-break: меньше = лучше
 
-  // Считаем очки
+  // Считаем очки и фиксируем лучшее место
   (s.tournaments || []).forEach((t) => {
     const placements = t.placements ?? [];
     if (!placements || placements.length === 0) return;
 
     placements.forEach((p) => {
       const base = pointsForPlaceOrganizer(p.place);
-      // прибавляем базовые очки (даже если 0, чтобы ключ появился)
       points.set(p.name, (points.get(p.name) ?? 0) + base);
+
+      const prev = bestPlace.get(p.name);
+      if (prev === undefined || p.place < prev) {
+        bestPlace.set(p.name, p.place);
+      }
     });
   });
 
-  // Убедимся, что все игроки сезона присутствуют в мапе (включая тех, кто не в placements)
+  // Убедимся, что все игроки сезона присутствуют в мапах
   const allPlayers = uniqPlayersOfSeason(s);
   allPlayers.forEach((name) => {
     if (!points.has(name)) points.set(name, 0);
+    if (!bestPlace.has(name)) bestPlace.set(name, Number.POSITIVE_INFINITY); // если не был в placements
   });
 
   return Array.from(points.entries())
-    .map(([name, pts]) => ({ name, points: pts }))
+    .map(([name, pts]) => ({ name, points: pts, bestPlace: bestPlace.get(name) ?? Number.POSITIVE_INFINITY }))
     .sort((a, b) => {
-      // Сортируем по очкам по убыванию, при равенстве — по имени (чтобы порядок детерминирован)
-      if (b.points !== a.points) return b.points - a.points;
-      return a.name.localeCompare(b.name);
-    });
+      if (b.points !== a.points) return b.points - a.points;          // очки, по убыванию
+      if ((a.bestPlace ?? Infinity) !== (b.bestPlace ?? Infinity))  // лучшее место, по возрастанию (1 лучше 7)
+        return (a.bestPlace ?? Infinity) - (b.bestPlace ?? Infinity);
+      return a.name.localeCompare(b.name, "ru");                     // детерминированный порядок по имени
+    })
+    .map(({ name, points }) => ({ name, points })); // приводим к старому формату
 }
 
 /** ===== Уникальные игроки сезона ===== */
