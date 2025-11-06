@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Straddle Moscow",
+  title: "The NUTS club Балашиха",
   description: "Рейтинг и правила",
 };
 
