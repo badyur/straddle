@@ -151,21 +151,31 @@ export default function Home() {
       </div>
 
       {/* ===== Стат-карточки (убрана карточка "Финал") ===== */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {[
-          ["Уникальных игроков", uniquePlayers],
-          ["Турниров", tournamentsCount],
-          ["Следующая игра", nextGameDate]
-        ].map(([label, val]) => (
-          <div
-            key={label as string}
-            className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition will-change-transform backdrop-blur-sm"
-          >
-            <div className="text-sm text-muted">{label}</div>
-            <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(val)}</div>
-          </div>
-        ))}
-      </div>
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+  {/* Кнопка даты игры — на мобилке занимает ширину двух карточек */}
+  <button
+    onClick={() => {}}
+    className="col-span-2 md:col-span-1 rounded-2xl py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-center transition"
+  >
+    <div className="text-sm text-white/80">Следующая игра</div>
+    <div className="text-2xl md:text-3xl font-bold">{String(nextGameDate)}</div>
+  </button>
+
+  {/* Две обычные карточки */}
+  <div
+    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition will-change-transform backdrop-blur-sm"
+  >
+    <div className="text-sm text-muted">Уникальных игроков</div>
+    <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(uniquePlayers)}</div>
+  </div>
+
+  <div
+    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition will-change-transform backdrop-blur-sm"
+  >
+    <div className="text-sm text-muted">Турниров</div>
+    <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(tournamentsCount)}</div>
+  </div>
+</div>
 
       {/* ===== Таблица рейтинга (включая нулевые строки) ===== */}
       <div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
