@@ -154,7 +154,7 @@ export default function Home() {
 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
 
   <div
-    className="col-span-2 md:col-span-1 rounded-2xl p-4 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm text-center"
+    className="col-span-2 md:col-span-1 rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm text-center flex flex-col justify-between"
   >
     <div className="text-sm text-muted">Следующая игра</div>
     <div className="text-3xl md:text-4xl font-semibold text-foreground">
@@ -163,14 +163,14 @@ export default function Home() {
   </div>
 
   <div
-    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm"
+    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between"
   >
     <div className="text-sm text-muted">Уникальных игроков</div>
     <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(uniquePlayers)}</div>
   </div>
 
   <div
-    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm"
+    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between"
   >
     <div className="text-sm text-muted">Турниров</div>
     <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(tournamentsCount)}</div>
