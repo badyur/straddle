@@ -10,14 +10,34 @@
       "playersCount": 20,
       "reentries": 6,
       "placements": [
-        { "name": "KHOMENKO", "place": 1 },
-        { "name": "Олегатор 3000", "place": 2 },
-        { "name": "Мария", "place": 3 },
-        { "name": "Лешанич", "place": 4 },
-        { "name": "Юрий", "place": 5 },
-        { "name": "Владимир", "place": 6 },
-        { "name": "Эмиль", "place": 7 },
-        { "name": "Евгений", "place": 8 }
+        { "name": "KHOMENKO", "points": 100, "ko": 0, "place": 1 },
+        { "name": "Олегатор 3000","points": 50, "ko": 0, "place": 2 },
+        { "name": "Мария","points": 30, "ko": 0,  "place": 3 },
+        { "name": "Лешанич","points": 20, "ko": 0, "place": 4 },
+        { "name": "Юрий", "points": 10, "ko": 0, "place": 5 },
+        { "name": "ArioServerus", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Эмиль","points": 0, "ko": 0,  "place": 7 },
+        { "name": "Евгений", "points": 0, "ko": 0, "place": 8 }
+      ]
+ },
+    {
+      "id": 2,
+      "date": "2025-11-07",
+      "type": "classic",
+      "playersCount": 11,
+      "reentries": 0,
+      "placements": [
+        { "name": "Klim", "points": 140, "ko": 3, "place": 1 },
+        { "name": "Иван", "points": 70, "ko": 0, "place": 2 },
+        { "name": "KHOMENKO", "points": 30, "ko": 2, "place": 3 },
+        { "name": "WhatSome", "points": 0, "ko": 2, "place": 4 },
+        { "name": "Олегатор 3000", "points": 0, "ko": 6, "place": 5 },
+        { "name": "Efreeemz", "points": 0, "ko": 2, "place": 6 },
+        { "name": "Шама", "points": 0, "ko": 3, "place": 7 },
+        { "name": "Admirable", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Лешанич", "points": 0, "ko": 0, "place": 9 },
+        { "name": "ArioServerus", "points": 0, "ko": 1, "place": 10 },
+        { "name": "Andy", "points": 0, "ko": 0, "place": 11 }
       ]
     }
   ],
@@ -27,8 +47,15 @@
     "Мария",
     "Лешанич",
     "Юрий",
-    "Владимир",
+    "ArioServerus",
     "Эмиль",
-    "Евгений"
+    "Евгений",
+    "Klim",
+    "Иван",
+    "WhatSome",
+    "Efreeemz",
+    "Шама",
+    "Admirable",
+    "Andy"
   ]
 }
