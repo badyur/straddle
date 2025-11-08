@@ -231,15 +231,15 @@ export default function Home() {
           <tbody>
             {table.map((row, i) => {
               const rank = i + 1;
-              const isCut = i === 8; // жирная линия после 18-го
-              const afterCut = i === 9;
+              const isCut = i === 8; // жирная линия после 9-го
+              const afterCut = i === 9; // Доп. отступ для строки после линии
               const isZero = row.points === 0;
 
               return (
                 <tr
                   key={row.name}
                   className={`border-t border-border transition-colors hover:bg-[#202020] ${
-                    isCut ? "border-b-4 border-b-accent" : ""
+                  isCut ? "border-b-4 border-b-[#b70f11]" : ""  //красная линия
                   }`}
                 >
                   <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
