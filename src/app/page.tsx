@@ -42,7 +42,7 @@ function pointsForPlaceOrganizer(place: number) {
  *  - суммируем base + ko * 6 по всем турнирам
  *  - возвращаем [{ name, points }] отсортированный по total desc, далее по лучшему месту, затем по имени
  */
-const BOUNTY_VALUE = 6;
+const BOUNTY_VALUE = 10;
 
 function parseBasePoints(p: any): number {
   if (!p) return 0;
