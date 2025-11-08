@@ -231,8 +231,8 @@ export default function Home() {
           <tbody>
             {table.map((row, i) => {
               const rank = i + 1;
-              const isCut = i === 17; // жирная линия после 18-го
-              const afterCut = i === 18;
+              const isCut = i === 8; // жирная линия после 18-го
+              const afterCut = i === 9;
               const isZero = row.points === 0;
 
               return (
