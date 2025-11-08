@@ -36,44 +36,83 @@ function pointsForPlaceOrganizer(place: number) {
   return 0;
 }
 
-/** ===== Подсчёт лидерборда (по схеме организатора), теперь включаем всех игроков сезона (включая 0) ===== */
-/** ===== Подсчёт лидерборда (с учётом tie-break по лучшему месту, затем по имени) ===== */
-function computeLeaderboardOrganizer(s: Season) {
-  const points = new Map<string, number>();
-  const bestPlace = new Map<string, number>(); // для tie-break: меньше = лучше
+/** ===== Новая логика подсчёта для организатора:
+ *  - базовые очки читаем из p.points (число или строка "140" / "140 + 3☠️")
+ *  - баунти читаем из p.ko либо парсим из p.points ("+ 3☠️")
+ *  - суммируем base + ko * 6 по всем турнирам
+ *  - возвращаем [{ name, points }] отсортированный по total desc, далее по лучшему месту, затем по имени
+ */
+const BOUNTY_VALUE = 6;
 
-  // Считаем очки и фиксируем лучшее место
+function parseBasePoints(p: any): number {
+  if (!p) return 0;
+  if (typeof p.points === "number") return p.points;
+  if (typeof p.points === "string") {
+    const m = p.points.match(/(-?\d+)/); // первый номер — базовые очки
+    if (m) return parseInt(m[1], 10);
+  }
+  return 0;
+}
+
+function parseKo(p: any): number {
+  if (!p) return 0;
+  if (typeof p.ko === "number") return p.ko;
+  if (typeof p.points === "string") {
+    // варианты: "140 + 3☠️", "3☠️", "+ 3☠"
+    const m1 = p.points.match(/\+\s*(\d+)\s*☠/);
+    if (m1) return parseInt(m1[1], 10);
+    const m2 = p.points.match(/(\d+)\s*☠/);
+    if (m2) return parseInt(m2[1], 10);
+  }
+  return 0;
+}
+
+function computeLeaderboardOrganizer(s: Season) {
+  const map = new Map<string, { base: number; ko: number; total: number }>();
+  const bestPlace = new Map<string, number>();
+
   (s.tournaments || []).forEach((t) => {
     const placements = t.placements ?? [];
-    if (!placements || placements.length === 0) return;
+    placements.forEach((p: any) => {
+      const name = p.name;
+      if (!name) return;
+      const base = parseBasePoints(p);
+      const ko = parseKo(p);
+      const existing = map.get(name) ?? { base: 0, ko: 0, total: 0 };
+      existing.base += base;
+      existing.ko += ko;
+      existing.total = existing.base + existing.ko * BOUNTY_VALUE;
+      map.set(name, existing);
 
-    placements.forEach((p) => {
-      const base = pointsForPlaceOrganizer(p.place);
-      points.set(p.name, (points.get(p.name) ?? 0) + base);
-
-      const prev = bestPlace.get(p.name);
-      if (prev === undefined || p.place < prev) {
-        bestPlace.set(p.name, p.place);
+      if (typeof p.place === "number") {
+        const prev = bestPlace.get(name);
+        if (prev === undefined || p.place < prev) bestPlace.set(name, p.place);
       }
     });
   });
 
-  // Убедимся, что все игроки сезона присутствуют в мапах
+  // Убедимся, что все игроки сезона присутствуют (даже если их нет в placements)
   const allPlayers = uniqPlayersOfSeason(s);
   allPlayers.forEach((name) => {
-    if (!points.has(name)) points.set(name, 0);
-    if (!bestPlace.has(name)) bestPlace.set(name, Number.POSITIVE_INFINITY); // если не был в placements
+    if (!map.has(name)) map.set(name, { base: 0, ko: 0, total: 0 });
+    if (!bestPlace.has(name)) bestPlace.set(name, Number.POSITIVE_INFINITY);
   });
 
-  return Array.from(points.entries())
-    .map(([name, pts]) => ({ name, points: pts, bestPlace: bestPlace.get(name) ?? Number.POSITIVE_INFINITY }))
-    .sort((a, b) => {
-      if (b.points !== a.points) return b.points - a.points;          // очки, по убыванию
-      if ((a.bestPlace ?? Infinity) !== (b.bestPlace ?? Infinity))  // лучшее место, по возрастанию (1 лучше 7)
-        return (a.bestPlace ?? Infinity) - (b.bestPlace ?? Infinity);
-      return a.name.localeCompare(b.name, "ru");                     // детерминированный порядок по имени
-    })
-    .map(({ name, points }) => ({ name, points })); // приводим к старому формату
+  const arr = Array.from(map.entries()).map(([name, v]) => ({
+    name,
+    points: v.total,
+    bestPlace: bestPlace.get(name) ?? Number.POSITIVE_INFINITY,
+  }));
+
+  arr.sort((a, b) => {
+    if (b.points !== a.points) return b.points - a.points;
+    if ((a.bestPlace ?? Infinity) !== (b.bestPlace ?? Infinity))
+      return (a.bestPlace ?? Infinity) - (b.bestPlace ?? Infinity);
+    return a.name.localeCompare(b.name, "ru");
+  });
+
+  // вернём в старом формате: [{ name, points }]
+  return arr.map((x) => ({ name: x.name, points: x.points }));
 }
 
 /** ===== Уникальные игроки сезона ===== */
