@@ -239,7 +239,7 @@ export default function Home() {
                 <tr
                   key={row.name}
                   className={`border-t border-border transition-colors hover:bg-[#202020] ${
-                  isCut ? "border-b-4 border-b-[#b70f11]" : ""  //красная линия
+                  isCut ? "border-b-8 border-b-[#b70f11]" : ""  //красная линия
                   }`}
                 >
                   <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
