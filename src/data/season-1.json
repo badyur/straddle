@@ -1,11 +1,11 @@
 {
   "season": 1,
   "finalDate": "2025-12-31",
-  "nextGameDate": "2025-11-07",
+  "nextGameDate": "2025-11-14",
   "tournaments": [
     {
       "id": 1,
-      "date": "2025-11-11",
+      "date": "2025-10-31",
       "type": "classic",
       "playersCount": 20,
       "reentries": 6,
