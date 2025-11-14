@@ -28,16 +28,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex-1" />
 
             {/* МЕНЮ */}
-            <nav className="flex gap-4 text-sm md:text-base overflow-x-auto">
-              <a href="/" className="font-semibold hover:text-accent whitespace-nowrap">
+            <nav className="flex items-center gap-6 text-foreground">
+              {/* Telegram link */}
+              <a
+                href="https://t.me/pokerclubnuts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors"
+              >
+                Telegram
+              </a>
+
+              <Link href="/" className="hover:text-accent transition-colors">
                 Главная
-              </a>
-              <a href="/rules" className="text-muted hover:text-foreground whitespace-nowrap">
+              </Link>
+
+              <Link href="/rules" className="hover:text-accent transition-colors">
                 Правила
-              </a>
-{/*              <a href="/calculator" className="text-muted hover:text-foreground whitespace-nowrap">
-                Калькулятор
-              </a>*/}
+              </Link>
             </nav>
           </div>
         </header>
