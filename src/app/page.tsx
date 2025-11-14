@@ -166,6 +166,27 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl p-8 space-y-6">
       <h1 className="text-4xl md:text-5xl font-bold text-foreground">The NUTS club Балашиха — рейтинг</h1>
+      {/* Описание клуба */}
+    <p className="text-foreground/80 mt-2 leading-relaxed">
+      Сообщество спортивного покера в Балашихе — <b>The NUTS Club</b>  
+      (<a className="text-accent underline" href="https://t.me/pokerclubnuts" target="_blank">
+        Telegram
+      </a>)
+      <br />
+      Для тех, кто любит покерный вайб, стратегию игры и новые знакомства.
+      <br />
+      <span className="font-semibold">Без азарта и ставок!</span>
+    </p>
+
+    {/* Кнопка записи на игру */}
+    <a
+      href="https://t.me/klimilya88?text=Привет,%20хочу%20записаться%20на%20игру%2014%20ноября"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition"
+    >
+      Записаться на следующую игру 14 ноября
+    </a>
 
       {/* ===== Табы сезонов (динамически). Season 1 → "Ноябрь" ===== */}
       <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
