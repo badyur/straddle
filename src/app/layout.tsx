@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* МЕНЮ */}
             <nav className="flex items-center gap-6 text-foreground">
-              {/* Telegram link */}
+              {/* Telegram icon */}
               <a
                 href="https://t.me/pokerclubnuts"
                 target="_blank"
