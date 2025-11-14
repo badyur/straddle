@@ -165,7 +165,7 @@ export default function Home() {
 
   return (
     <main className="mx-auto max-w-6xl p-8 space-y-6">
-      <h1 className="text-4xl md:text-5xl font-bold text-foreground">The NUTS club Балашиха — рейтинг</h1>
+      <h1 className="text-4xl md:text-5xl font-bold text-foreground">The NUTS club Балашиха</h1>
 
       {/* Описание клуба */}
       <p className="text-foreground/80 mt-2 leading-relaxed">

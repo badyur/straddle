@@ -39,8 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     aria-label="Telegram"
   >
     <svg 
-      width="24" 
-      height="24" 
+      width="48" 
+      height="48" 
       viewBox="0 0 32 32" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
