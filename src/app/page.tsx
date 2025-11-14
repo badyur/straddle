@@ -201,46 +201,63 @@ export default function Home() {
         )}
       </div>
 
-      {/* ===== Стат-карточки (Следующая игра растянута на 2 колонки на мобилке, + кнопка записи внутри) ===== */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
-        {/* Карточка: Следующая игра — теперь содержит дату, кнопку записи и месяц */}
-        <div className="col-span-2 md:col-span-1 rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col items-center gap-4">
-          <div className="text-sm text-muted">Следующая игра</div>
+{/* ===== Стат-карточки (компактный вариант: убран бейдж "ноября", уменьшены padding/шрифты) ===== */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+  {/* Карточка: Следующая игра — компактнее */}
+  <div
+    className="
+      col-span-2 md:col-span-1
+      rounded-2xl
+      p-4 md:p-6
+      bg-surface border border-border/60
+      shadow hover:shadow-xl
+      transition
+      flex flex-col items-center gap-3
+      md:justify-between
+      md:backdrop-blur-sm
+    "
+  >
+    <div className="text-sm text-muted">Следующая игра</div>
 
-          {/* Дата крупно */}
-          <div className="text-3xl md:text-4xl font-semibold text-foreground">
-            {String(nextGameDate)}
-          </div>
+    {/* Дата — поменьше на мобилке */}
+    <div className="text-2xl md:text-3xl font-semibold text-foreground">
+      {String(nextGameDate)}
+    </div>
 
-          {/* Кнопка записи — формируем текст для TG автоматически */}
-          <a
-            href={`https://t.me/klimilya88?text=${encodeURIComponent(
-              `Привет, хочу записаться на игру ${formatDateRu(nextGameDate)}`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full text-center bg-accent hover:bg-[#2b6ce6] text-accent-foreground font-semibold py-3 rounded-xl transition"
-          >
-            Записаться на игру {formatDateRu(nextGameDate)}
-          </a>
+    {/* Кнопка записи — ширина оставляем, но делаем чуть компактнее */}
+    <a
+      href={`https://t.me/klimilya88?text=${encodeURIComponent(
+        `Привет, хочу записаться на игру ${formatDateRu(nextGameDate)}`
+      )}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-full text-center bg-accent hover:bg-[#2b6ce6] text-accent-foreground font-semibold py-2 md:py-3 rounded-lg transition"
+    >
+      Записаться на игру {formatDateRu(nextGameDate)}
+    </a>
 
-          {/* Месяц — маленький бейдж */}
-          <div className="px-4 py-2 bg-surface-2 text-foreground rounded-lg text-sm">
-            {formatDateRu(nextGameDate).split(" ").slice(1).join(" ")}
-          </div>
-        </div>
+    {/* Бейдж месяца убран (как просил) — раньше здесь был: 
+        <div className="px-4 py-2 bg-surface-2 text-foreground rounded-lg text-sm">...</div>
+        Удалил чтобы карточка была компактной.
+    */}
+  </div>
 
-        {/* Оставшиеся карточки */}
-        <div className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between">
-          <div className="text-sm text-muted">Уникальных игроков</div>
-          <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(uniquePlayers)}</div>
-        </div>
+  {/* Уникальных игроков — компактный вариант */}
+  <div
+    className="rounded-2xl p-4 md:p-6 bg-surface border border-border/60 shadow transition flex flex-col justify-between"
+  >
+    <div className="text-sm text-muted">Уникальных игроков</div>
+    <div className="text-2xl md:text-3xl font-semibold text-foreground">{String(uniquePlayers)}</div>
+  </div>
 
-        <div className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between">
-          <div className="text-sm text-muted">Турниров</div>
-          <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(tournamentsCount)}</div>
-        </div>
-      </div>
+  {/* Турниров — компактный вариант */}
+  <div
+    className="rounded-2xl p-4 md:p-6 bg-surface border border-border/60 shadow transition flex flex-col justify-between"
+  >
+    <div className="text-sm text-muted">Турниров</div>
+    <div className="text-2xl md:text-3xl font-semibold text-foreground">{String(tournamentsCount)}</div>
+  </div>
+</div>
 
       {/* ===== Таблица рейтинга (включая нулевые строки) ===== */}
       <div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
