@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import rawSeason1 from "@/data/season-1.json";
 
-type Placement = { name: string; place: number; ko?: number };
+type Placement = { name: string; place: number; ko?: number; points?: number | string };
 type Tournament = {
   id: number;
   date?: string;
@@ -26,23 +26,12 @@ type Season = {
 const season1: Season = rawSeason1 as unknown as Season;
 const seasons: Season[] = [season1]; // при появлении season-2/3 добавь их сюда
 
-/** ===== Схема организатора: 1→100, 2→50, 3→30, 4→20, 5→10, 6+→0 ===== */
-function pointsForPlaceOrganizer(place: number) {
-  if (place === 1) return 100;
-  if (place === 2) return 50;
-  if (place === 3) return 30;
-  if (place === 4) return 20;
-  if (place === 5) return 10;
-  return 0;
-}
-
 /** ===== Новая логика подсчёта для организатора:
  *  - базовые очки читаем из p.points (число или строка "140" / "140 + 3☠️")
  *  - баунти читаем из p.ko либо парсим из p.points ("+ 3☠️")
- *  - суммируем base + ko * 6 по всем турнирам
- *  - возвращаем [{ name, points }] отсортированный по total desc, далее по лучшему месту, затем по имени
+ *  - суммируем base + ko * BOUNTY_VALUE по всем турнирам
  */
-const BOUNTY_VALUE = 10;
+const BOUNTY_VALUE = 10; // можно изменить тут
 
 function parseBasePoints(p: any): number {
   if (!p) return 0;
@@ -127,6 +116,17 @@ function uniqPlayersOfSeason(s: Season) {
   return Array.from(set);
 }
 
+/** ===== Форматирование даты по-русски: "14 ноября" ===== */
+function formatDateRu(dateStr?: string) {
+  if (!dateStr) return "—";
+  try {
+    const d = new Date(dateStr);
+    return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long" }).format(d);
+  } catch {
+    return dateStr;
+  }
+}
+
 /** ===== Медаль для места ===== */
 function RankBadge({ rank }: { rank: number }) {
   const base =
@@ -166,27 +166,18 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-6xl p-8 space-y-6">
       <h1 className="text-4xl md:text-5xl font-bold text-foreground">The NUTS club Балашиха — рейтинг</h1>
-      {/* Описание клуба */}
-    <p className="text-foreground/80 mt-2 leading-relaxed">
-      Сообщество спортивного покера в Балашихе — <b>The NUTS Club</b>  
-      (<a className="text-accent underline" href="https://t.me/pokerclubnuts" target="_blank">
-        Telegram
-      </a>)
-      <br />
-      Для тех, кто любит покерный вайб, стратегию игры и новые знакомства.
-      <br />
-      <span className="font-semibold">Без азарта и ставок!</span>
-    </p>
 
-    {/* Кнопка записи на игру */}
-    <a
-      href="https://t.me/klimilya88?text=Привет,%20хочу%20записаться%20на%20игру%2014%20ноября"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-block mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition"
-    >
-      Записаться на следующую игру 14 ноября
-    </a>
+      {/* Описание клуба */}
+      <p className="text-foreground/80 mt-2 leading-relaxed">
+        Сообщество спортивного покера в Балашихе — <b>The NUTS Club</b>{" "}
+        (<a className="text-accent underline" href="https://t.me/pokerclubnuts" target="_blank" rel="noreferrer">
+          Telegram
+        </a>)
+        <br />
+        Для тех, кто любит покерный вайб, стратегию игры и новые знакомства.
+        <br />
+        <span className="font-semibold">Без азарта и ставок!</span>
+      </p>
 
       {/* ===== Табы сезонов (динамически). Season 1 → "Ноябрь" ===== */}
       <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
@@ -210,33 +201,46 @@ export default function Home() {
         )}
       </div>
 
-{/* ===== Стат-карточки (Следующая игра растянута на 2 колонки на мобилке) ===== */}
-<div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+      {/* ===== Стат-карточки (Следующая игра растянута на 2 колонки на мобилке, + кнопка записи внутри) ===== */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+        {/* Карточка: Следующая игра — теперь содержит дату, кнопку записи и месяц */}
+        <div className="col-span-2 md:col-span-1 rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col items-center gap-4">
+          <div className="text-sm text-muted">Следующая игра</div>
 
-  <div
-    className="col-span-2 md:col-span-1 rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm text-center flex flex-col justify-between"
-  >
-    <div className="text-sm text-muted">Следующая игра</div>
-    <div className="text-3xl md:text-4xl font-semibold text-foreground">
-      {String(nextGameDate)}
-    </div>
-  </div>
+          {/* Дата крупно */}
+          <div className="text-3xl md:text-4xl font-semibold text-foreground">
+            {String(nextGameDate)}
+          </div>
 
-  <div
-    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between"
-  >
-    <div className="text-sm text-muted">Уникальных игроков</div>
-    <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(uniquePlayers)}</div>
-  </div>
+          {/* Кнопка записи — формируем текст для TG автоматически */}
+          <a
+            href={`https://t.me/klimilya88?text=${encodeURIComponent(
+              `Привет, хочу записаться на игру ${formatDateRu(nextGameDate)}`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full text-center bg-accent hover:bg-[#2b6ce6] text-accent-foreground font-semibold py-3 rounded-xl transition"
+          >
+            Записаться на игру {formatDateRu(nextGameDate)}
+          </a>
 
-  <div
-    className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between"
-  >
-    <div className="text-sm text-muted">Турниров</div>
-    <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(tournamentsCount)}</div>
-  </div>
+          {/* Месяц — маленький бейдж */}
+          <div className="px-4 py-2 bg-surface-2 text-foreground rounded-lg text-sm">
+            {formatDateRu(nextGameDate).split(" ").slice(1).join(" ")}
+          </div>
+        </div>
 
-</div>
+        {/* Оставшиеся карточки */}
+        <div className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between">
+          <div className="text-sm text-muted">Уникальных игроков</div>
+          <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(uniquePlayers)}</div>
+        </div>
+
+        <div className="rounded-2xl p-6 bg-surface border border-border/60 shadow hover:shadow-xl hover:-translate-y-0.5 transition backdrop-blur-sm flex flex-col justify-between">
+          <div className="text-sm text-muted">Турниров</div>
+          <div className="text-3xl md:text-4xl font-semibold text-foreground">{String(tournamentsCount)}</div>
+        </div>
+      </div>
 
       {/* ===== Таблица рейтинга (включая нулевые строки) ===== */}
       <div className="rounded-2xl bg-surface border border-border shadow overflow-hidden">
@@ -252,7 +256,7 @@ export default function Home() {
           <tbody>
             {table.map((row, i) => {
               const rank = i + 1;
-              const isCut = i === 8; // жирная линия после 9-го
+              const isCut = i === 8; // ЛИНИЯ ПОСЛЕ 9 МЕСТА (i === 8)
               const afterCut = i === 9; // Доп. отступ для строки после линии
               const isZero = row.points === 0;
 
@@ -260,7 +264,7 @@ export default function Home() {
                 <tr
                   key={row.name}
                   className={`border-t border-border transition-colors hover:bg-[#202020] ${
-                  isCut ? "border-b-8 border-b-[#b70f11]" : ""  //красная линия
+                    isCut ? "border-b-8 border-b-[#b70f11]" : ""
                   }`}
                 >
                   <td className={`p-4 align-middle ${isCut ? "pb-6" : ""} ${afterCut ? "pt-6" : ""}`}>
