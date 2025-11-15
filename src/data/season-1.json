@@ -47,7 +47,7 @@
       "playersCount": 20,
       "reentries": 6,
       "placements": [
-        { "name": "Пьяный мастер", "points": 100, "ko": 0, "place": 1 },
+        { "name": "Пьяный мастер", "points": 110, "ko": 0, "place": 1 },
         { "name": "Efreemz","points": 60, "ko": 0, "place": 2 },
         { "name": "Алексей","points": 30, "ko": 0,  "place": 3 },
         { "name": "Олегатор 3000","points": 0, "ko": 0, "place": 4 },
