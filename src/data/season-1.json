@@ -1,7 +1,7 @@
 {
   "season": 1,
   "finalDate": "2025-12-31",
-  "nextGameDate": "2025-11-14",
+  "nextGameDate": "2025-11-21",
   "tournaments": [
     {
       "id": 1,
@@ -39,7 +39,26 @@
         { "name": "ArioServerus", "points": 0, "ko": 1, "place": 10 },
         { "name": "Andy", "points": 0, "ko": 0, "place": 11 }
       ]
-    }
+    },
+     {
+      "id": 3,
+      "date": "2025-11-14",
+      "type": "classic",
+      "playersCount": 20,
+      "reentries": 6,
+      "placements": [
+        { "name": "Пьяный мастер", "points": 100, "ko": 0, "place": 1 },
+        { "name": "efreemz","points": 60, "ko": 0, "place": 2 },
+        { "name": "Алексей","points": 30, "ko": 0,  "place": 3 },
+        { "name": "Олегатор 3000","points": 0, "ko": 0, "place": 4 },
+        { "name": "ArioServerus", "points": 0, "ko": 0, "place": 5 },
+        { "name": "admirable", "points": 0, "ko": 0, "place": 6 },
+        { "name": "«22»","points": 0, "ko": 0,  "place": 7 },
+        { "name": "WhatSome", "points": 0, "ko": 0, "place": 8 },
+        { "name": "KHOMENKO","points": 0, "ko": 0,  "place": 9 },
+        { "name": "DonSancho","points": 0, "ko": 0,  "place": 10 }
+      ]
+ }
   ],
   "players": [
     "KHOMENKO",
@@ -56,6 +75,10 @@
     "Efreeemz",
     "Шама",
     "Admirable",
-    "Andy"
+    "Andy",
+    "Пьяный мастер",
+    "efreemz",
+    "Алексей",
+    "«22»"
   ]
 }
