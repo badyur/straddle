@@ -44,7 +44,7 @@
       "id": 3,
       "date": "2025-11-14",
       "type": "classic",
-      "playersCount": 20,
+      "playersCount": 10,
       "reentries": 6,
       "placements": [
         { "name": "Пьяный мастер", "points": 110, "ko": 0, "place": 1 },
@@ -57,6 +57,27 @@
         { "name": "WhatSome", "points": 0, "ko": 0, "place": 8 },
         { "name": "KHOMENKO","points": 0, "ko": 0,  "place": 9 },
         { "name": "DonSancho","points": 0, "ko": 0,  "place": 10 }
+      ]
+ },
+      {
+      "id": 4,
+      "date": "2025-11-23",
+      "type": "classic",
+      "playersCount": 12,
+      "reentries": 6,
+      "placements": [
+        { "name": "Marinessa", "points": 90, "ko": 4, "place": 1 },
+        { "name": "WhatSome","points": 50, "ko": 3, "place": 2 },
+        { "name": "Татьяна","points": 35, "ko": 0,  "place": 3 },
+        { "name": "Efreemz","points": 30, "ko": 2, "place": 4 },
+        { "name": "Леонид", "points": 25, "ko": 1, "place": 5 },
+        { "name": "Admirable", "points": 20, "ko": 2, "place": 6 },
+        { "name": "Andy","points": 0, "ko": 1,  "place": 7 },
+        { "name": "ArioServerus", "points": 0, "ko": 4, "place": 8 },
+        { "name": "«22»","points": 0, "ko": 0,  "place": 9 },
+        { "name": "Old fox","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Петр","points": 0, "ko": 0,  "place": 11 },
+        { "name": "Василий","points": 0, "ko": 0,  "place": 12 }
       ]
  }
   ],
@@ -78,6 +99,12 @@
     "Пьяный мастер",
     "Efreemz",
     "Алексей",
-    "«22»"
+    "«22»",
+    "Marinessa",
+    "Татьяна",
+    "Леонид",
+    "Old fox",
+    "Петр",
+    "Василий"
   ]
 }
