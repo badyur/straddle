@@ -79,6 +79,31 @@
         { "name": "Петр","points": 0, "ko": 0,  "place": 11 },
         { "name": "Василий","points": 0, "ko": 0,  "place": 12 }
       ]
+ },
+
+       {
+      "id": 4,
+      "date": "2025-11-28",
+      "type": "classic",
+      "playersCount": 14,
+      "reentries": 6,
+      "placements": [
+        { "name": "Admirable", "points": 140, "ko": 0, "place": 1 },
+        { "name": "Хага (Лунтик)","points": 80, "ko": 0, "place": 2 },
+        { "name": "«22»","points": 60, "ko": 0,  "place": 3 },
+        { "name": "Олегатор 3000","points": 40, "ko": 0, "place": 4 },
+        { "name": "Efreemz", "points": 0, "ko": 0, "place": 5 },
+        { "name": "Никита (Фахитос)", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Юрий","points": 0, "ko": 0,  "place": 7 },
+        { "name": "Элина", "points": 0, "ko": 0, "place": 8 },
+        { "name": "WhatSome","points": 0, "ko": 0,  "place": 9 },
+        { "name": "Татьяна","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Леонид","points": 0, "ko": 0,  "place": 11 },
+        { "name": "Дмитрий (Marco)","points": 0, "ko": 0,  "place": 12 },
+        { "name": "ArioServerus","points": 0, "ko": 0,  "place": 13 },
+        { "name": "Олег (Жук)","points": 0, "ko": 0,  "place": 14 }
+
+      ]
  }
   ],
   "players": [
@@ -105,6 +130,11 @@
     "Леонид",
     "Old fox",
     "Петр",
-    "Василий"
+    "Василий",
+    "Хага (Лунтик)",
+    "Никита (Фахитос)",
+    "Элина",
+    "Дмитрий (Marco)",
+    "Олег (Жук)"
   ]
 }
