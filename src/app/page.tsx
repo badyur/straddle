@@ -179,11 +179,11 @@ export default function Home() {
         <span className="font-semibold">Без азарта и ставок!</span>
       </p>
 
-      {/* ===== Табы сезонов (динамически). Season 1 → "Ноябрь" ===== */}
+      {/* ===== Табы сезонов (динамически). Season 1 → "Декабрь" ===== */}
       <div className="flex gap-3 overflow-x-auto -mx-4 px-4">
         {seasons.length > 0 ? (
           seasons.map((s, i) => {
-            const label = s.season === 1 ? "Ноябрь" : `Сезон ${s.season ?? i + 1}`;
+            const label = s.season === 1 ? "Декабрь" : `Сезон ${s.season ?? i + 1}`;
             return (
               <button
                 key={label}
