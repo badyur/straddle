@@ -1,7 +1,7 @@
 {
   "season": 1,
   "finalDate": "2025-12-31",
-  "nextGameDate": "2025-12-05",
+  "nextGameDate": "2025-12-07",
   "tournaments": [
     {
       "id": 1,
@@ -104,7 +104,28 @@
         { "name": "Олег (Жук)","points": 0, "ko": 0,  "place": 14 }
 
       ]
+ },
+     {
+      "id": 1,
+      "date": "2025-12-05",
+      "type": "classic",
+      "playersCount": 11,
+      "reentries": 6,
+      "placements": [
+        { "name": "Татьяна", "points": 160, "ko": 0, "place": 1 },
+        { "name": "Юрий","points": 70, "ko": 0, "place": 2 },
+        { "name": "WhatSome","points": 30, "ko": 0,  "place": 3 },
+        { "name": "Efreemz","points": 20, "ko": 0, "place": 4 },
+        { "name": "ArioServerus", "points": 10, "ko": 0, "place": 5 },
+        { "name": "Леонид", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Klim","points": 0, "ko": 0,  "place": 7 },
+        { "name": "«22»", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Admirable", "points": 0, "ko": 0, "place": 9 },
+        { "name": "Шама", "points": 0, "ko": 0, "place": 10 },
+        { "name": "Ivbag", "points": 0, "ko": 0, "place": 11}
+      ]
  }
+
   ],
   "players": [
     "KHOMENKO",
@@ -135,6 +156,7 @@
     "Никита (Фахитос)",
     "Элина",
     "Дмитрий (Marco)",
-    "Олег (Жук)"
+    "Олег (Жук)",
+    "Ivbag"
   ]
 }
