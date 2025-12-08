@@ -124,6 +124,21 @@
         { "name": "Шама", "points": 0, "ko": 0, "place": 10 },
         { "name": "Ivbag", "points": 0, "ko": 0, "place": 11}
       ]
+ },
+
+     {
+      "id": 6,
+      "date": "2025-12-07",
+      "type": "classic",
+      "playersCount": 5,
+      "reentries": 7,
+      "placements": [
+        { "name": "«22»", "points": 100, "ko": 0, "place": 1 },
+        { "name": "WhatSome","points": 0, "ko": 0, "place": 2 },
+        { "name": "Олегатор 3000","points": 0, "ko": 0,  "place": 3 },
+        { "name": "Анастасия","points": 0, "ko": 0, "place": 4 },
+        { "name": "Klim", "points": 0, "ko": 0, "place": 5 }
+      ]
  }
 
   ],
@@ -157,6 +172,7 @@
     "Элина",
     "Дмитрий (Marco)",
     "Олег (Жук)",
-    "Ivbag"
+    "Ivbag",
+    "Анастасия"
   ]
 }
