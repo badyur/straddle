@@ -139,6 +139,29 @@
         { "name": "Анастасия","points": 0, "ko": 0, "place": 4 },
         { "name": "Klim", "points": 0, "ko": 0, "place": 5 }
       ]
+ },
+      {
+      "id": 7,
+      "date": "2025-12-17",
+      "type": "classic",
+      "playersCount": 14,
+      "reentries": 7,
+      "placements": [
+        { "name": "ReRaise", "points": 210, "ko": 5, "place": 1 },
+        { "name": "Никита (Фахитос)","points": 125, "ko": 4, "place": 2 },
+        { "name": "WhatSome","points": 75, "ko": 3,  "place": 3 },
+        { "name": "Молорик","points": 0, "ko": 0, "place": 4 },
+        { "name": "ArioServerus", "points": 45, "ko": 3, "place": 5 },
+        { "name": "Юрий", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Klim", "points": 30, "ko": 2, "place": 7 },
+        { "name": "Marinessa", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Пуфик", "points": 0, "ko": 0, "place": 9 },
+        { "name": "Пуфик", "points": 0, "ko": 0, "place": 10 },
+        { "name": "Пуфик", "points": 0, "ko": 0, "place": 11 },
+        { "name": "3 outs", "points": 0, "ko": 0, "place": 12 },
+        { "name": "3 outs", "points": 0, "ko": 0, "place": 13 },
+        { "name": "Панда", "points": 0, "ko": 0, "place": 14 }
+      ]
  }
 
   ],
@@ -173,6 +196,10 @@
     "Дмитрий (Marco)",
     "Олег (Жук)",
     "Ivbag",
-    "Анастасия"
+    "Анастасия",
+    "Молорик",
+    "Пуфик",
+    "3 outs",
+    "Панда"
   ]
 }
