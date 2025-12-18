@@ -33,6 +33,13 @@ const seasons: Season[] = [season1]; // при появлении season-2/3 д�
  */
 const BOUNTY_VALUE = 10; // можно изменить тут
 
+// Исключаемый игрок (можно добавить других при необходимости)
+const EXCLUDED_PLAYERS = ["Klim"];
+
+function shouldExcludePlayer(name: string): boolean {
+  return EXCLUDED_PLAYERS.includes(name);
+}
+
 function parseBasePoints(p: any): number {
   if (!p) return 0;
   if (typeof p.points === "number") return p.points;
@@ -64,7 +71,8 @@ function computeLeaderboardOrganizer(s: Season) {
     const placements = t.placements ?? [];
     placements.forEach((p: any) => {
       const name = p.name;
-      if (!name) return;
+      if (!name || shouldExcludePlayer(name)) return; // Исключаем игрока
+      
       const base = parseBasePoints(p);
       const ko = parseKo(p);
       const existing = map.get(name) ?? { base: 0, ko: 0, total: 0 };
@@ -81,7 +89,9 @@ function computeLeaderboardOrganizer(s: Season) {
   });
 
   // Убедимся, что все игроки сезона присутствуют (даже если их нет в placements)
-  const allPlayers = uniqPlayersOfSeason(s);
+  // Исключаем игрока из общего списка
+  const allPlayers = uniqPlayersOfSeason(s).filter(name => !shouldExcludePlayer(name));
+  
   allPlayers.forEach((name) => {
     if (!map.has(name)) map.set(name, { base: 0, ko: 0, total: 0 });
     if (!bestPlace.has(name)) bestPlace.set(name, Number.POSITIVE_INFINITY);
@@ -106,12 +116,19 @@ function computeLeaderboardOrganizer(s: Season) {
 
 /** ===== Уникальные игроки сезона ===== */
 function uniqPlayersOfSeason(s: Season) {
-  if (Array.isArray(s.players) && s.players.length) return s.players;
+  if (Array.isArray(s.players) && s.players.length) {
+    // Фильтруем исключенных игроков из списка сезона
+    return s.players.filter(name => !shouldExcludePlayer(name));
+  }
+  
   const set = new Set<string>();
   (s.tournaments || []).forEach((t: any) =>
-    (t.players || t.placements || []).forEach((p: any) =>
-      typeof p === "string" ? set.add(p) : set.add(p.name)
-    )
+    (t.players || t.placements || []).forEach((p: any) => {
+      const name = typeof p === "string" ? p : p.name;
+      if (name && !shouldExcludePlayer(name)) { // Исключаем игрока
+        set.add(name);
+      }
+    })
   );
   return Array.from(set);
 }
@@ -236,7 +253,7 @@ export default function Home() {
       Записаться на игру {formatDateRu(nextGameDate)}
     </a>
 
-    {/* Бейдж месяца убран (как просил) — раньше здесь был: 
+    {/* Бейдж месяца убран — раньше здесь был: 
         <div className="px-4 py-2 bg-surface-2 text-foreground rounded-lg text-sm">...</div>
         Удалил чтобы карточка была компактной.
     */}
