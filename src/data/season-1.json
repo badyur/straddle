@@ -162,6 +162,18 @@
         { "name": "3 outs", "points": 0, "ko": 0, "place": 13 },
         { "name": "Панда", "points": 0, "ko": 0, "place": 14 }
       ]
+ },
+       {
+      "id": 8,
+      "date": "2025-12-13",
+      "type": "classic",
+      "playersCount": 3,
+      "reentries": 7,
+      "placements": [
+        { "name": "Efreemz", "points": 95, "ko": 0, "place": 1 },
+        { "name": "Татьяна","points": 50, "ko": 0, "place": 2 },
+        { "name": "Admirable","points": 25, "ko": 0,  "place": 3 },
+      ]
  }
 
   ],
