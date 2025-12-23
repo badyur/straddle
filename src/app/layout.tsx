@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
