@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import rawSeason1 from "@/data/season-1.json";
+import rawSeason2 from "@/data/season-2.json";
 
 type Placement = { name: string; place: number; ko?: number; points?: number | string };
 type Tournament = {
@@ -23,8 +23,8 @@ type Season = {
 };
 
 /** Приводим JSON к типу Season (устраняет проблемы с literal types) */
-const season1: Season = rawSeason1 as unknown as Season;
-const seasons: Season[] = [season1]; // при появлении season-2/3 добавь их сюда
+const season2: Season = rawSeason2 as unknown as Season;
+const seasons: Season[] = [season2];  /** тут меняем вывода сезона */ 
 
 /** ===== Новая логика подсчёта для организатора:
  *  - базовые очки читаем из p.points (число или строка "140" / "140 + 3☠️")

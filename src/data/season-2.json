@@ -1,34 +1,51 @@
 {
-  "season": 1,
+  "season": 2,
   "finalDate": "2025-12-31",
-  "nextGameDate": "2025-10-19",
+  "nextGameDate": "2026-01-09",
   "tournaments": [
     {
       "id": 1,
-      "date": "2025-11-11",
+      "date": "2025-01-04",
       "type": "classic",
       "playersCount": 20,
       "reentries": 6,
       "placements": [
-        { "name": "KHOMENKO", "place": 1 },
-        { "name": "Олегатор 3000", "place": 2 },
-        { "name": "Мария", "place": 3 },
-        { "name": "Лешанич", "place": 4 },
-        { "name": "Юрий", "place": 5 },
-        { "name": "Владимир", "place": 6 },
-        { "name": "Эмиль", "place": 6 },
-        { "name": "Евгений", "place": 6 }
+        { "name": "Marco", "points": 1650, "ko": 0, "place": 1 },
+        { "name": "Посейдон","points": 900, "ko": 0, "place": 2 },
+        { "name": "Реактиве","points": 450, "ko": 0,  "place": 3 },
+        { "name": "«xzibitor»","points": 0, "ko": 0, "place": 4 },
+        { "name": "3 outs", "points": 0, "ko": 0, "place": 5 },
+        { "name": "Marinessa", "points": 0, "ko": 0, "place": 6 },
+        { "name": "«22»","points": 0, "ko": 0,  "place": 7 },
+        { "name": "Leon_k70", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Andy", "points": 0, "ko": 0, "place": 9 },
+        { "name": "Бурда", "points": 0, "ko": 0, "place": 10 },
+        { "name": "Татьяна", "points": 0, "ko": 0, "place": 11},
+        { "name": "Marrussi_", "points": 0, "ko": 0, "place": 12},
+        { "name": "ArioServerus", "points": 0, "ko": 0, "place": 13},
+        { "name": "Иван", "points": 0, "ko": 0, "place": 14},
+        { "name": "Аша", "points": 0, "ko": 0, "place": 15},
+        { "name": "Наталья", "points": 0, "ko": 0, "place": 16 },
       ]
     }
   ],
   "players": [
-    "KHOMENKO",
-    "Олегатор 3000",
-    "Мария",
-    "Лешанич",
-    "Юра",
-    "Владимир",
-    "Эмиль",
-    "Евгений"
+    "«Marco»",
+    "«Посейдон»",
+    "«Реактиве»",
+    "«xzibitor»",
+    "3 outs",
+    "«Marinessa»",
+    "«22»",
+    "Leon_k70",
+    "Andy",
+    "Бурда",
+    "Татьяна",
+    "Marrussi_",
+    "ArioServerus",
+    "Иван",
+    "Аша",
+    "Наталья"
+
   ]
 }
