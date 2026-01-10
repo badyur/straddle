@@ -1,7 +1,7 @@
 {
   "season": 2,
-  "finalDate": "2025-12-31",
-  "nextGameDate": "2026-01-09",
+  "finalDate": "2026-12-31",
+  "nextGameDate": "2026-01-14",
   "tournaments": [
     {
       "id": 1,
@@ -27,8 +27,26 @@
         { "name": "Аша", "points": 0, "ko": 0, "place": 15},
         { "name": "Наталья", "points": 0, "ko": 0, "place": 16 }
       ]
- }
-
+ },
+    {
+      "id": 2,
+      "date": "2026-01-09",
+      "type": "classic",
+      "playersCount": 10,
+      "reentries": 0,
+      "placements": [
+        { "name": "Ведущий", "points": 1210, "ko": 2, "place": 1 },
+        { "name": "KHOMENKO", "points": 800, "ko": 4, "place": 2 },
+        { "name": "«22»", "points": 300, "ko": 0, "place": 3 },
+        { "name": "WhatSome", "points": 0, "ko": 2, "place": 4 },
+        { "name": "Аша", "points": 250, "ko": 5, "place": 5 },
+        { "name": "Творческий Дро", "points": 50, "ko": 1, "place": 6 },
+        { "name": "Директор", "points": 0, "ko": 0, "place": 7 },
+        { "name": "ReRaise", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Marrussi", "points": 100, "ko": 2, "place": 9 },
+        { "name": "hello_kitty", "points": 0, "ko": 0, "place": 10 }
+      ]
+    }
   ],
   "players": [
     "Marco",
@@ -46,7 +64,13 @@
     "ArioServerus",
     "Иван",
     "Аша",
-    "Наталья"
-
+    "Наталья",
+    "Ведущий",
+    "KHOMENKO",
+    "Творческий Дро",
+    "Директор",
+    "Михаил",
+    "ReRaise",
+    "hello_kitty"
   ]
 }
