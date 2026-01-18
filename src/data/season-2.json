@@ -1,7 +1,7 @@
 {
   "season": 2,
   "finalDate": "2026-12-31",
-  "nextGameDate": "2026-01-14",
+  "nextGameDate": "2026-01-24",
   "tournaments": [
     {
       "id": 1,
@@ -49,7 +49,7 @@
     },
         {
       "id": 3,
-      "date": "2026-01-24",
+      "date": "2026-01-18",
       "type": "classic",
       "playersCount": 15,
       "reentries": 0,
