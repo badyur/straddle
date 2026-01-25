@@ -70,6 +70,32 @@
         { "name": "Пьяный маст", "points": 0, "ko": 0, "place": 14 },
         { "name": "Шамиль", "points": 0, "ko": 0, "place": 15 }
       ]
+    },
+        {
+      "id": 4,
+      "date": "2026-01-24",
+      "type": "classic",
+      "playersCount": 17,
+      "reentries": 0,
+      "placements": [
+        { "name": "ArioServerus", "points": 2880, "ko": 15, "place": 1 },
+        { "name": "«22»", "points": 1170, "ko": 2, "place": 2 },
+        { "name": "VikR", "points": 1080, "ko": 3, "place": 3 },
+        { "name": "Efreemz", "points": 780, "ko": 2, "place": 4 },
+        { "name": "Ведущий", "points": 390, "ko": 2, "place": 5 },
+        { "name": "hello_kitty", "points": 100, "ko": 1, "place": 6 },
+        { "name": "WhatSome", "points": 100, "ko": 1, "place": 7 },
+        { "name": "Leon", "points": 100, "ko": 1, "place": 8 },
+        { "name": "xzibitor", "points": 200, "ko": 2, "place": 9 },
+        { "name": "KHOMENKO", "points": 100, "ko": 1, "place": 10 },
+        { "name": "Marrussi_", "points": 100, "ko": 1, "place": 11 },
+        { "name": "Посейдон", "points": 0, "ko": 0, "place": 12 },
+        { "name": "Аша", "points": 0, "ko": 0, "place": 13 },
+        { "name": "Marinessa", "points": 0, "ko": 0, "place": 14 },
+        { "name": "Татьяна", "points": 0, "ko": 0, "place": 15 },
+        { "name": "3 outs", "points": 0, "ko": 0, "place": 16 },
+        { "name": "kepz", "points": 0, "ko": 0, "place": 17 }
+      ]
     }
   ],
   "players": [
@@ -104,6 +130,12 @@
     "TaylorSwift",
     "Reactive",
     "Пьяный маст",
-    "Шамиль"
+    "Шамиль",
+    "VikR",
+    "Efreemz",
+    "WhatSome",
+    "Leon",
+    "kepz"
+
   ]
 }
