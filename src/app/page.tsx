@@ -243,7 +243,7 @@ export default function Home() {
 
     {/* Кнопка записи — ширина оставляем, но делаем чуть компактнее */}
     <a
-      href={`https://t.me/ThenutsclubB?text=${encodeURIComponent(
+      href={`https://t.me/The_NUTS_Club_game_bot?text=${encodeURIComponent(
         `Привет, хочу записаться на игру ${formatDateRu(nextGameDate)}`
       )}`}
       target="_blank"
