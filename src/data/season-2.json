@@ -12,7 +12,7 @@
       "placements": [
         { "name": "Marco", "points": 1650, "ko": 0, "place": 1 },
         { "name": "Посейдон","points": 900, "ko": 0, "place": 2 },
-        { "name": "Реактиве","points": 450, "ko": 0,  "place": 3 },
+        { "name": "Reactive","points": 450, "ko": 0,  "place": 3 },
         { "name": "«xzibitor»","points": 0, "ko": 0, "place": 4 },
         { "name": "3 outs", "points": 0, "ko": 0, "place": 5 },
         { "name": "Marinessa", "points": 0, "ko": 0, "place": 6 },
@@ -137,7 +137,6 @@
   "players": [
     "Marco",
     "Посейдон",
-    "Реактиве",
     "xzibitor",
     "3 outs",
     "Marinessa",
