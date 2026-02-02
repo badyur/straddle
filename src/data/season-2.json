@@ -96,6 +96,42 @@
         { "name": "3 outs", "points": 0, "ko": 0, "place": 16 },
         { "name": "kepz", "points": 0, "ko": 0, "place": 17 }
       ]
+    },
+            {
+      "id": 5
+      "date": "2026-02-01",
+      "type": "classic",
+      "playersCount": 26,
+      "reentries": 0,
+      "placements": [
+        { "name": "Посейдон", "points": 1890, "ko": 0, "place": 1 },
+        { "name": "Manu", "points": 1350, "ko": 0, "place": 2 },
+        { "name": "VikR", "points": 1080, "ko": 0, "place": 3 },
+        { "name": "Weed", "points": 810, "ko": 0, "place": 4 },
+        { "name": "Манита", "points": 270, "ko": 0, "place": 5 },
+        { "name": "Ведущий", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Олегатор 3000", "points": 0, "ko": 0, "place": 7 },
+        { "name": "MaksUnik", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Леший", "points": 0, "ko": 0, "place": 9 },
+        { "name": "Erikovna", "points": 0, "ko": 0, "place": 10 },
+        { "name": "Marrussi_", "points": 0, "ko": 0, "place": 11 },
+        { "name": "Reactive", "points": 0, "ko": 0, "place": 12 },
+        { "name": "Leon", "points": 0, "ko": 0, "place": 13 },
+        { "name": "Nucha", "points": 0, "ko": 0, "place": 14 },
+        { "name": "Кицунэ", "points": 0, "ko": 0, "place": 15 },
+        { "name": "Efreemz", "points": 0, "ko": 0, "place": 16 },
+        { "name": "Антонина", "points": 0, "ko": 0, "place": 17 },
+        { "name": "Бурда", "points": 0, "ko": 0, "place": 18 },
+        { "name": "«22»", "points": 0, "ko": 0, "place": 19 },
+        { "name": "Kumigraf", "points": 0, "ko": 0, "place": 20 },
+        { "name": "Gogi", "points": 0, "ko": 0, "place": 21 },
+        { "name": "Sergey", "points": 0, "ko": 0, "place": 22 },
+        { "name": "Особо опасный", "points": 0, "ko": 0, "place": 23 },
+        { "name": "Наталья", "points": 0, "ko": 0, "place": 24 },
+        { "name": "Ольга У меня его нет", "points": 0, "ko": 0, "place": 25 },
+        { "name": "ArioServerus", "points": 0, "ko": 0, "place": 26 },
+
+      ]
     }
   ],
   "players": [
@@ -135,7 +171,22 @@
     "Efreemz",
     "WhatSome",
     "Leon",
-    "kepz"
-
+    "kepz",
+    "Manu",
+    "Weed",
+    "Манита",
+    "Олегатор 3000",
+    "MaksUnik",
+    "Erikovna",
+    "Leon"
+    "Nucha",
+    "Кицунэ",
+    "Антонина",
+    "Kumigraf",
+    "Gogi",
+    "Sergey",
+    "Особо опасный",
+    "Наталья",
+    "Ольга У меня его нет"
   ]
 }
