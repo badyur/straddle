@@ -20,7 +20,7 @@
         { "name": "Leon_k70", "points": 0, "ko": 0, "place": 8 },
         { "name": "Andy", "points": 0, "ko": 0, "place": 9 },
         { "name": "Бурда", "points": 0, "ko": 0, "place": 10 },
-        { "name": "Татьяна", "points": 0, "ko": 0, "place": 11},
+        { "name": "Nucha", "points": 0, "ko": 0, "place": 11},
         { "name": "Marrussi", "points": 0, "ko": 0, "place": 12},
         { "name": "ArioServerus", "points": 0, "ko": 0, "place": 13},
         { "name": "Иван", "points": 0, "ko": 0, "place": 14},
@@ -92,7 +92,7 @@
         { "name": "Посейдон", "points": 0, "ko": 0, "place": 12 },
         { "name": "Аша", "points": 0, "ko": 0, "place": 13 },
         { "name": "Marinessa", "points": 0, "ko": 0, "place": 14 },
-        { "name": "Татьяна", "points": 0, "ko": 0, "place": 15 },
+        { "name": "Nucha", "points": 0, "ko": 0, "place": 15 },
         { "name": "3 outs", "points": 0, "ko": 0, "place": 16 },
         { "name": "kepz", "points": 0, "ko": 0, "place": 17 }
       ]
@@ -144,7 +144,6 @@
     "Leon_k70",
     "Andy",
     "Бурда",
-    "Татьяна",
     "Marrussi",
     "ArioServerus",
     "Иван",
@@ -177,7 +176,6 @@
     "Олегатор 3000",
     "MaksUnik",
     "Erikovna",
-    "Leon",
     "Nucha",
     "Кицунэ",
     "Антонина",
