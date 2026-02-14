@@ -152,6 +152,21 @@
         { "name": "Аша", "points": 0, "ko": 0, "place": 10 },
         { "name": "Marinessa", "points": 0, "ko": 0, "place": 11 }
       ]
+    },
+      
+              {
+      "id": 7,
+      "date": "2026-02-13",
+      "type": "classic",
+      "playersCount": 5,
+      "reentries": 0,
+      "placements": [
+        { "name": "Посейдон", "points": 1730, "ko": 0, "place": 1 },
+        { "name": "KHOMENKO", "points": 1220, "ko": 0, "place": 2 },
+        { "name": "Moses", "points": 980, "ko": 0, "place": 3 },
+        { "name": "seilormoon", "points": 730, "ko": 0, "place": 4 },
+        { "name": "CADR", "points": 240, "ko": 0, "place": 5 }
+      ]
     }
 
   ],
@@ -204,7 +219,10 @@
     "Sergey",
     "Особо опасный",
     "Наталья",
-    "Ольга У меня его нет"
+    "Ольга У меня его нет",
+    "Moses",
+    "seilormoon",
+    "CADR"
   ]
 }
 
