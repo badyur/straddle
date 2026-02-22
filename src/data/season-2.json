@@ -167,8 +167,47 @@
         { "name": "seilormoon", "points": 730, "ko": 0, "place": 4 },
         { "name": "CADR", "points": 240, "ko": 0, "place": 5 }
       ]
+    },
+              {
+      "id": 8,
+      "date": "2026-02-21",
+      "type": "classic",
+      "playersCount": 31,
+      "reentries": 0,
+      "placements": [
+        { "name": "ReRaise", "points": 3200, "ko":11, "place": 1 },
+        { "name": "Ника", "points": 1990, "ko": 5, "place": 2 },
+        { "name": "Ведущий", "points": 1260, "ko": 1, "place": 3 },
+        { "name": "VikR", "points": 1290, "ko": 3, "place": 4 },
+        { "name": "Посейдон", "points": 930, "ko": 1, "place": 5 },
+        { "name": "«22»", "points": 1140, "ko": 3, "place": 6 },
+        { "name": "Efreemz", "points": 980, "ko": 4, "place": 7 },
+        { "name": "Reactive", "points": 410, "ko": 0, "place": 8 },
+        { "name": "Erikovna", "points": 100, "ko": 1, "place": 9 },
+        { "name": "Гантеля", "points": 200, "ko": 2, "place": 10 },
+        { "name": "Manu", "points": 0, "ko": 0, "place": 11 },
+        { "name": "KHOMENKO", "points": 0, "ko": 0, "place": 12 },
+        { "name": "Евген", "points": 400, "ko": 4, "place": 13 },
+        { "name": "Trukhan", "points": 100, "ko": 1, "place": 14 },
+        { "name": "ArioServerus", "points": 600, "ko": 6, "place": 15 },
+        { "name": "seilormoon", "points": 100, "ko": 1, "place": 16 },
+        { "name": "Творческий дро", "points": 0, "ko": 0, "place": 17 },
+        { "name": "Leon", "points": 100, "ko": 1, "place": 18 },
+        { "name": "Marrussi", "points": 100, "ko": 1, "place": 19 },
+        { "name": "Weed", "points": 300, "ko": 3, "place": 20 },
+        { "name": "Nucha", "points": 0, "ko": 0, "place": 21 },
+        { "name": "Аша", "points": 0, "ko": 0, "place": 22 },
+        { "name": "SOBER", "points": 0, "ko": 0, "place": 23 },
+        { "name": "Popeye", "points": 300, "ko": 3, "place": 24 },
+        { "name": "Анкин котик", "points": 100, "ko": 1, "place": 25 },
+        { "name": "Anastas", "points": 100, "ko": 1, "place": 26 },
+        { "name": "Klim", "points": 0, "ko": 0, "place": 27 },
+        { "name": "Виктория", "points": 200, "ko": 2, "place": 28 },
+        { "name": "Особо опасный", "points": 0, "ko": 0, "place": 29 },
+        { "name": "Манго", "points": 0, "ko": 0, "place": 30 },
+        { "name": "Графский", "points": 0, "ko": 0, "place": 31 }
+      ]
     }
-
   ],
   "players": [
     "Marco",
@@ -222,7 +261,16 @@
     "Ольга У меня его нет",
     "Moses",
     "seilormoon",
-    "CADR"
+    "CADR",
+    "Ника",
+    "Гантеля",
+    "SOBER",
+    "Popeye",
+    "Анкин котик",
+    "Anastas",
+    "Klim",
+    "Манго",
+    "Графский"
   ]
 }
 
