@@ -64,6 +64,38 @@
         { "name": "Манго","points": 0, "ko": 0,  "place": 21},
         { "name": "Sever","points": 0, "ko": 0,  "place": 22}
       ]
+    },
+        {
+      "id": 3,
+      "date": "2026-03-12",
+      "type": "classic",
+      "playersCount": 23,
+      "reentries": 6,
+      "placements": [
+        { "name": "ArioServerus", "points": 2640, "ko": 0, "place": 1 },
+        { "name": "Weed","points": 1870, "ko": 0, "place": 2 },
+        { "name": "«22»","points": 1500, "ko": 0,  "place": 3 },
+        { "name": "Ведущий","points": 1120, "ko": 0, "place": 4 },
+        { "name": "Erikovna", "points": 370, "ko": 0, "place": 5 },
+        { "name": "Ника", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Leon","points": 0, "ko": 0,  "place": 7 },
+        { "name": "Посейдон", "points": 0, "ko": 0, "place": 8 },
+        { "name": "Манго","points": 0, "ko": 0,  "place": 9 },
+        { "name": "3 outs","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Николай","points": 0, "ko": 0,  "place": 11},
+        { "name": "Efreemz","points": 0, "ko": 0,  "place": 12 },
+        { "name": "seilormoon","points": 0, "ko": 0,  "place": 13},
+        { "name": "Манита","points": 0, "ko": 0,  "place": 14},
+        { "name": "Директор","points": 0, "ko": 0,  "place": 15},
+        { "name": "Футболист","points": 0, "ko": 0,  "place": 16},
+        { "name": "No Name","points": 0, "ko": 0,  "place": 17},
+        { "name": "Аша","points": 0, "ko": 0,  "place": 18},
+        { "name": "Аналитик","points": 0, "ko": 0,  "place": 19},
+        { "name": "Nucha","points": 0, "ko": 0,  "place": 20},
+        { "name": "sober","points": 0, "ko": 0,  "place": 21},
+        { "name": "VikR","points": 0, "ko": 0,  "place": 22},
+        { "name": "Особо опасный","points": 0, "ko": 0,  "place": 23}
+      ]
     }
   ],
   "players": [
@@ -98,7 +130,12 @@
     "seilormoon",
     "Anastas",
     "Манго",
-    "Sever"
+    "Sever",
+    "Ника",
+    "Директор",
+    "Футболист",
+    "Аналитик",
+    "sober"
 
   ]
 }
