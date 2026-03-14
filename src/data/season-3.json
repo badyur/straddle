@@ -1,7 +1,7 @@
 {
   "season": 3,
   "finalDate": "2026-04-30",
-  "nextGameDate": "2026-03-13",
+  "nextGameDate": "2026-03-17",
   "tournaments": [
     {
       "id": 1,
@@ -96,6 +96,41 @@
         { "name": "VikR","points": 0, "ko": 0,  "place": 22},
         { "name": "Особо опасный","points": 0, "ko": 0,  "place": 23}
       ]
+    },
+            {
+      "id": 3,
+      "date": "2026-03-13",
+      "type": "classic",
+      "playersCount": 26,
+      "reentries": 6,
+      "placements": [
+        { "name": "Илья Буров", "points": 1970, "ko": 0, "place": 1 },
+        { "name": "Евген","points": 1400, "ko": 0, "place": 2 },
+        { "name": "Efreemz","points": 1090, "ko": 0,  "place": 3 },
+        { "name": "Nucha","points": 930, "ko": 0, "place": 4 },
+        { "name": "Leon", "points": 780, "ko": 0, "place": 5 },
+        { "name": "«22»", "points": 700, "ko": 0, "place": 6 },
+        { "name": "Ведущий","points": 540, "ko": 0,  "place": 7 },
+        { "name": "ЛуиБетон", "points": 390, "ko": 0, "place": 8 },
+        { "name": "Школьник","points": 0, "ko": 0,  "place": 9 },
+        { "name": "Мокрячок Попай","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Особо опасный","points": 0, "ko": 0,  "place": 11},
+        { "name": "KHOMENKO","points": 0, "ko": 0,  "place": 12 },
+        { "name": "Посейдон","points": 0, "ko": 0,  "place": 13},
+        { "name": "seilormoon","points": 0, "ko": 0,  "place": 14},
+        { "name": "No Name","points": 0, "ko": 0,  "place": 15},
+        { "name": "sober","points": 0, "ko": 0,  "place": 16},
+        { "name": "Deon","points": 0, "ko": 0,  "place": 17},
+        { "name": "VikR","points": 0, "ko": 0,  "place": 18},
+        { "name": "Erikovna","points": 0, "ko": 0,  "place": 19},
+        { "name": "WhatSome","points": 0, "ko": 0,  "place": 20},
+        { "name": "Аша","points": 0, "ko": 0,  "place": 21},
+        { "name": "Rock&reRoll","points": 0, "ko": 0,  "place": 22},
+        { "name": "ArioServerus","points": 0, "ko": 0,  "place": 23},
+        { "name": "CADR","points": 0, "ko": 0,  "place": 24},
+        { "name": "Weed","points": 0, "ko": 0,  "place": 25},
+        { "name": "Манго","points": 0, "ko": 0,  "place": 26}
+      ]
     }
   ],
   "players": [
@@ -135,7 +170,11 @@
     "Директор",
     "Футболист",
     "Аналитик",
-    "sober"
+    "sober",
+    "Школьник",
+    "KHOMENKO",
+    "Deon",
+    "Rock&reRoll"
 
   ]
 }
