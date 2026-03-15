@@ -148,12 +148,12 @@ export default async function PlayerPage({
     <main className="p-6 space-y-6">
       {/* Фото + имя */}
       <header
-        className={`flex items-center gap-6 p-4 rounded-xl ${
+        className={`flex flex-col sm:flex-row items-center gap-6 p-4 rounded-xl ${
           isVIP ? "border-2 border-yellow-400 shadow-lg" : ""
         }`}
       >
         {/* Фото */}
-        <div className="relative w-[180px] h-[180px] rounded-xl overflow-hidden border border-border bg-muted flex items-center justify-center">
+        <div className="relative w-[180px] h-[180px] shrink-0 rounded-xl overflow-hidden border border-border bg-muted flex items-center justify-center">
           {photo ? (
             <Image
               src={photo.url}
@@ -171,7 +171,7 @@ export default async function PlayerPage({
         </div>
 
         {/* Имя + сезоны */}
-        <div>
+        <div className="text-center sm:text-left">
           <h1 className="text-3xl font-bold flex items-center gap-2">
             {name}
             {isVIP && <span className="text-yellow-400 text-2xl">👑</span>}
