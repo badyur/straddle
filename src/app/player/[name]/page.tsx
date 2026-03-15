@@ -4,6 +4,9 @@ import Image from "next/image";
 import { promises as fs } from "fs";
 import path from "path";
 
+/* === VIP игроки (победители) === */
+const VIP_PLAYERS = ["ArioServerus"];
+
 /* === helpers === */
 function norm(s: string) {
   return s?.normalize("NFC").replace(/\s+/g, " ").trim().toLocaleLowerCase("ru");
@@ -80,9 +83,7 @@ async function resolvePlayerPhoto(
         width: 180,
         height: 180,
       };
-    } catch {
-      // пробуем следующее расширение
-    }
+    } catch {}
   }
   return null;
 }
@@ -99,8 +100,12 @@ export default async function PlayerPage({
 
   const seasons = await loadActiveSeasons();
 
-  // ищем игрока во ВСЕХ сезонах
   const nm = norm(name);
+
+  /* === проверяем VIP === */
+  const isVIP = VIP_PLAYERS.some((p) => norm(p) === nm);
+
+  // ищем игрока во ВСЕХ сезонах
   const seasonsWithPlayer = seasons.filter(
     (s) =>
       (Array.isArray(s.players) &&
@@ -114,7 +119,6 @@ export default async function PlayerPage({
 
   if (seasonsWithPlayer.length === 0) return notFound();
 
-  // суммарная сводка по всем сезонам, где игрок встречается
   const total = seasonsWithPlayer.reduce(
     (acc, s) => {
       const x = summarize(s, name);
@@ -132,10 +136,8 @@ export default async function PlayerPage({
 
   const avgPlace = total.games ? total.totalPlace / total.games : null;
 
-  // сервером определяем, есть ли фото
   const photo = await resolvePlayerPhoto(name);
 
-  // список сезонов для отображения (сортируем по номеру, если есть)
   const seasonsLabel = seasonsWithPlayer
     .slice()
     .sort((a: any, b: any) => (Number(a?.season ?? 0) || 0) - (Number(b?.season ?? 0) || 0))
@@ -145,8 +147,12 @@ export default async function PlayerPage({
   return (
     <main className="p-6 space-y-6">
       {/* Фото + имя */}
-      <header className="flex items-center gap-6">
-        {/* Блок под фото / плейсхолдер */}
+      <header
+        className={`flex items-center gap-6 p-4 rounded-xl ${
+          isVIP ? "border-2 border-yellow-400 shadow-lg" : ""
+        }`}
+      >
+        {/* Фото */}
         <div className="relative w-[180px] h-[180px] rounded-xl overflow-hidden border border-border bg-muted flex items-center justify-center">
           {photo ? (
             <Image
@@ -166,7 +172,10 @@ export default async function PlayerPage({
 
         {/* Имя + сезоны */}
         <div>
-          <h1 className="text-3xl font-bold">{name}</h1>
+          <h1 className="text-3xl font-bold flex items-center gap-2">
+            {name}
+            {isVIP && <span className="text-yellow-400 text-2xl">👑</span>}
+          </h1>
           <p className="text-muted-foreground">Сезоны: {seasonsLabel}</p>
         </div>
       </header>
