@@ -1,7 +1,7 @@
 {
   "season": 3,
   "finalDate": "2026-04-30",
-  "nextGameDate": "2026-03-24",
+  "nextGameDate": "2026-03-28",
   "tournaments": [
     {
       "id": 1,
@@ -203,6 +203,35 @@
         { "name": "Anastas","points": 0, "ko": 0,  "place": 27},
         { "name": "Андрей","points": 0, "ko": 0,  "place": 28}
       ]
+    },
+     {
+      "id": 7,
+      "date": "2026-03-24",
+      "type": "classic",
+      "playersCount": 20,
+      "reentries": 6,
+      "placements": [
+        { "name": "Efreemz", "points": 1500, "ko": 4, "place": 1 },
+        { "name": "Бурик","points": 1190, "ko": 5, "place": 2 },
+        { "name": "Leon","points": 930, "ko": 4,  "place": 3 },
+        { "name": "Nucha","points": 920, "ko": 6, "place": 4 },
+        { "name": "seilormoon", "points": 970, "ko": 9, "place": 5 },
+        { "name": "Ведущий", "points": 470, "ko": 0, "place": 6 },
+        { "name": "Reactive","points": 460, "ko": 2,  "place": 7 },
+        { "name": "Аша", "points": 510, "ko": 5, "place": 8 },
+        { "name": "Weed","points": 50, "ko": 1,  "place": 9 },
+        { "name": "VikR","points": 50, "ko": 1,  "place": 10 },
+        { "name": "Творческий Дро","points": 0, "ko": 0,  "place": 11},
+        { "name": "Badbaunty","points": 0, "ko": 0,  "place": 12 },
+        { "name": "Marinessa","points": 50, "ko": 1,  "place": 13},
+        { "name": "Посейдон","points": 100, "ko": 2,  "place": 14},
+        { "name": "Леший","points": 50, "ko": 1,  "place": 15},
+        { "name": "Impala88","points": 100, "ko": 2,  "place": 16},
+        { "name": "J7","points": 0, "ko": 0,  "place": 17},
+        { "name": "Макар хускар","points": 0, "ko": 0,  "place": 18},
+        { "name": "xzibitor","points": 0, "ko": 0,  "place": 19},
+        { "name": "Олеся","points": 0, "ko": 0,  "place": 20}
+      ]
     }
   ],
   "players": [
@@ -257,6 +286,10 @@
     "Impala88",
     "Гасик1",
     "xzibitor",
-    "Андрей"
+    "Андрей",
+    "Badbaunty",
+    "J7",
+    "Макар хускар",
+    "Олеся"
   ]
 }
