@@ -315,7 +315,7 @@
         { "name": "Директор", "points": 1080, "ko": 12, "place": 6 },
         { "name": "Trukhan","points": 500, "ko": 1,  "place": 7 },
         { "name": "Бурик", "points": 510, "ko": 2, "place": 8 },
-        { "name": "Вячеславовна","points": 100, "ko": 2,  "place": 9 },
+        { "name": "shatalov_a","points": 100, "ko": 2,  "place": 9 },
         { "name": "Евген","points": 200, "ko": 4,  "place": 10 },
         { "name": "Leon","points": 100, "ko": 2,  "place": 11},
         { "name": "«22»","points": 150, "ko": 3,  "place": 12 },
@@ -398,7 +398,6 @@
     "p0ezd4",
     "maverick",
     "Trukhan",
-    "Вячеславовна",
     "Хаски",
     "Олегатор 3000"
   ]
