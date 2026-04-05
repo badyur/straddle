@@ -1,7 +1,7 @@
 {
   "season": 3,
   "finalDate": "2026-04-30",
-  "nextGameDate": "2026-04-04",
+  "nextGameDate": "2026-04-08",
   "tournaments": [
     {
       "id": 1,
@@ -299,6 +299,37 @@
         { "name": "Sober","points": 0, "ko": 0,  "place": 22},
         { "name": "maverick","points": 0, "ko": 0,  "place": 23}
       ]
+    },
+                {
+      "id": 10,
+      "date": "2026-04-04",
+      "type": "classic",
+      "playersCount": 22,
+      "reentries": 6,
+      "placements": [
+        { "name": "Посейдон", "points": 2920, "ko": 14, "place": 1 },
+        { "name": "Juvelir","points": 1560, "ko": 2, "place": 2 },
+        { "name": "Erikovna","points": 2050, "ko": 3,  "place": 3 },
+        { "name": "Weed","points": 790, "ko": 0, "place": 4 },
+        { "name": "Nucha", "points": 900, "ko": 6, "place": 5 },
+        { "name": "Директор", "points": 1080, "ko": 12, "place": 6 },
+        { "name": "Trukhan","points": 500, "ko": 1,  "place": 7 },
+        { "name": "Бурик", "points": 510, "ko": 2, "place": 8 },
+        { "name": "Вячеславовна","points": 100, "ko": 2,  "place": 9 },
+        { "name": "Евген","points": 200, "ko": 4,  "place": 10 },
+        { "name": "Leon","points": 100, "ko": 2,  "place": 11},
+        { "name": "«22»","points": 150, "ko": 3,  "place": 12 },
+        { "name": "Аша","points": 50, "ko": 1,  "place": 13},
+        { "name": "seilormoon","points": 100, "ko": 2,  "place": 14},
+        { "name": "Хаски","points": 50, "ko": 1,  "place": 15},
+        { "name": "ArioServerus","points": 400, "ko": 8,  "place": 16},
+        { "name": "Олегатор 3000","points": 50, "ko": 1,  "place": 17},
+        { "name": "Marrussi","points": 0, "ko": 0,  "place": 18},
+        { "name": "Творческий дро","points": 50, "ko": 1,  "place": 19},
+        { "name": "Ведущий","points": 0, "ko": 0,  "place": 20},
+        { "name": "Efreemz","points": 0, "ko": 0,  "place": 21},
+        { "name": "Аналитик","points": 0, "ko": 0,  "place": 22},
+      ]
     }
 
   ],
@@ -365,6 +396,10 @@
     "Данила Колбасенко",
     "Крис",
     "p0ezd4",
-    "maverick"
+    "maverick",
+    "Trukhan",
+    "Вячеславовна",
+    "Хаски",
+    "Олегатор 3000"
   ]
 }
