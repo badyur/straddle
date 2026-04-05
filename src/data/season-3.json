@@ -328,7 +328,7 @@
         { "name": "Творческий дро","points": 50, "ko": 1,  "place": 19},
         { "name": "Ведущий","points": 0, "ko": 0,  "place": 20},
         { "name": "Efreemz","points": 0, "ko": 0,  "place": 21},
-        { "name": "Аналитик","points": 0, "ko": 0,  "place": 22},
+        { "name": "Аналитик","points": 0, "ko": 0,  "place": 22}
       ]
     }
 
