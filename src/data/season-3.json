@@ -309,7 +309,7 @@
       "placements": [
         { "name": "Посейдон", "points": 2920, "ko": 14, "place": 1 },
         { "name": "Juvelir","points": 1560, "ko": 2, "place": 2 },
-        { "name": "Erikovna","points": 2050, "ko": 3,  "place": 3 },
+        { "name": "Erikovna","points": 1240, "ko": 3,  "place": 3 },
         { "name": "Weed","points": 790, "ko": 0, "place": 4 },
         { "name": "Nucha", "points": 900, "ko": 6, "place": 5 },
         { "name": "Директор", "points": 1080, "ko": 12, "place": 6 },
