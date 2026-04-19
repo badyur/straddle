@@ -1,7 +1,7 @@
 {
   "season": 3,
   "finalDate": "2026-04-30",
-  "nextGameDate": "2026-04-18",
+  "nextGameDate": "2026-04-21",
   "tournaments": [
     {
       "id": 1,
@@ -419,6 +419,35 @@
         { "name": "Weed","points": 0, "ko": 0,  "place": 17},
         { "name": "Аша","points": 0, "ko": 0,  "place": 18}
       ]
+    },
+                      {
+      "id": 12,
+      "date": "2026-04-18",
+      "type": "classic",
+      "playersCount": 20,
+      "reentries": 6,
+      "placements": [
+        { "name": "SoulSkills", "points": 0, "ko": 0, "place": 1 },
+        { "name": "Weed","points": 1300, "ko": 0, "place": 2 },
+        { "name": "NewCeption","points": 1040, "ko": 0,  "place": 3 },
+        { "name": "Хаски","points": 780, "ko": 0, "place": 4 },
+        { "name": "Nucha", "points": 676, "ko": 0, "place": 5 },
+        { "name": "Ведущий", "points": 572, "ko": 0, "place": 6 },
+        { "name": "Juvelir","points": 468, "ko": 0,  "place": 7 },
+        { "name": "Efreemz", "points": 364, "ko": 0, "place": 8 },
+        { "name": "Алексевна","points": 0, "ko": 0,  "place": 9 },
+        { "name": "Особо опасный","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Marrussi","points": 0, "ko": 0,  "place": 11},
+        { "name": "Евген","points": 0, "ko": 0,  "place": 12 },
+        { "name": "Кудряш","points": 0, "ko": 0,  "place": 13},
+        { "name": "CADR","points": 0, "ko": 0,  "place": 14},
+        { "name": "Аша","points": 0, "ko": 0,  "place": 15},
+        { "name": "Бурик","points": 0, "ko": 0,  "place": 16},
+        { "name": "Манго","points": 0, "ko": 0,  "place": 17},
+        { "name": "Erikovna","points": 0, "ko": 0,  "place": 18},
+        { "name": "Leon","points": 0, "ko": 0,  "place": 19},
+        { "name": "Вадик","points": 0, "ko": 0,  "place": 20}
+      ]
     }
 
 
@@ -497,6 +526,9 @@
     "Омич",
     "Казичелло",
     "NewCeption",
-    "Игрок11"
+    "Игрок11",
+    "Алексевна",
+    "Кудряш",
+    "Вадик"
   ]
 }
