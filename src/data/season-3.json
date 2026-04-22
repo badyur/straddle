@@ -448,7 +448,34 @@
         { "name": "Leon","points": 0, "ko": 0,  "place": 19},
         { "name": "Вадик","points": 0, "ko": 0,  "place": 20}
       ]
+    },
+                          {
+      "id": 13,
+      "date": "2026-04-25",
+      "type": "classic",
+      "playersCount": 17,
+      "reentries": 6,
+      "placements": [
+        { "name": "Аша", "points": 1880, "ko": 0, "place": 1 },
+        { "name": "Impala88","points": 0, "ko": 0, "place": 2 },
+        { "name": "Nucha","points": 1175, "ko": 0,  "place": 3 },
+        { "name": "Weed","points": 940, "ko": 0, "place": 4 },
+        { "name": "Sober", "points": 705, "ko": 0, "place": 5 },
+        { "name": "Ведущий", "points": 0, "ko": 0, "place": 6 },
+        { "name": "Juvelir","points": 0, "ko": 0,  "place": 7 },
+        { "name": "NewCeption", "points": 0, "ko": 0, "place": 8 },
+        { "name": "огурчик","points": 0, "ko": 0,  "place": 9 },
+        { "name": "Посейдон","points": 0, "ko": 0,  "place": 10 },
+        { "name": "«22»","points": 0, "ko": 0,  "place": 11},
+        { "name": "seilormoon","points": 0, "ko": 0,  "place": 12 },
+        { "name": "Leon","points": 0, "ko": 0,  "place": 13},
+        { "name": "Манго","points": 0, "ko": 0,  "place": 14},
+        { "name": "11","points": 0, "ko": 0,  "place": 15},
+        { "name": "sum1ng","points": 0, "ko": 0,  "place": 16},
+        { "name": "AlexWhatsapp","points": 0, "ko": 0,  "place": 17}
+      ]
     }
+
 
 
   ],
@@ -529,6 +556,8 @@
     "Игрок11",
     "Алексевна",
     "Кудряш",
-    "Вадик"
+    "Вадик",
+    "11",
+    "AlexWhatsapp"
   ]
 }
