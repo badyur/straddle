@@ -384,7 +384,7 @@
         { "name": "CADR","points": 0, "ko": 0,  "place": 14},
         { "name": "Аша","points": 50, "ko": 1,  "place": 15},
         { "name": "Евген","points": 50, "ko": 1,  "place": 16},
-        { "name": "efreemz","points": 0, "ko": 0,  "place": 17},
+        { "name": "Efreemz","points": 0, "ko": 0,  "place": 17},
         { "name": "Marinessa","points": 0, "ko": 0,  "place": 18},
         { "name": "Erikovna","points": 0, "ko": 0,  "place": 19},
         { "name": "Посейдон","points": 500, "ko": 4,  "place": 20},
@@ -509,6 +509,42 @@
         { "name": "admirable","points": 0, "ko": 0,  "place": 25},
         { "name": "ТубоПулька","points": 0, "ko": 0,  "place": 26}
       ]
+    },
+      {
+      "id": 15,
+      "date": "2026-04-29",
+      "type": "classic",
+      "playersCount": 27,
+      "reentries": 6,
+      "placements": [
+        { "name": "Juvelir", "points": 1950, "ko": 0, "place": 1 },
+        { "name": "Манго","points": 1560, "ko": 0, "place": 2 },
+        { "name": "«22»","points": 1170, "ko": 0,  "place": 3 },
+        { "name": "only one","points": 858, "ko": 0, "place": 4 },
+        { "name": "PRO100KHA", "points": 702, "ko": 0, "place": 5 },
+        { "name": "Nucha", "points": 624, "ko": 0, "place": 6 },
+        { "name": "bzhead","points": 546, "ko": 0,  "place": 7 },
+        { "name": "Efreemz", "points": 390, "ko": 0, "place": 8 },
+        { "name": "Leon","points": 0, "ko": 0,  "place": 9 },
+        { "name": "admirable","points": 0, "ko": 0,  "place": 10 },
+        { "name": "Бурик","points": 0, "ko": 0,  "place": 11},
+        { "name": "огурчик","points": 0, "ko": 0,  "place": 12 },
+        { "name": "No Name","points": 0, "ko": 0,  "place": 13},
+        { "name": "seilormoon","points": 0, "ko": 0,  "place": 14},
+        { "name": "Манита","points": 0, "ko": 0,  "place": 15},
+        { "name": "Аша","points": 0, "ko": 0,  "place": 16},
+        { "name": "hодин","points": 0, "ko": 0,  "place": 17},
+        { "name": "NewCeption","points": 0, "ko": 0,  "place": 18},
+        { "name": "Mega_Eagle451","points": 0, "ko": 0,  "place": 19},
+        { "name": "Абракадабра","points": 0, "ko": 0,  "place": 20},
+        { "name": "Sober","points": 0, "ko": 0,  "place": 21},
+        { "name": "Weed","points": 0, "ko": 0,  "place": 22},
+        { "name": "Посейдон","points": 0, "ko": 0,  "place": 23},
+        { "name": "Ведущий","points": 0, "ko": 0,  "place": 24},
+        { "name": "Евген","points": 0, "ko": 0,  "place": 25},
+        { "name": "CADR","points": 0, "ko": 0,  "place": 26},
+        { "name": "Особо опасный","points": 0, "ko": 0,  "place": 27}
+      ]
     }
 
 
@@ -517,6 +553,9 @@
   "players": [
     "Leon",
     "«22»",
+    "Mega_Eagle451",
+    "Абракадабра",
+    "hодин",
     "Nucha",
     "Ведущий",
     "CADR",
@@ -596,6 +635,9 @@
     "AlexWhatsapp",
     "aaa700",
     "Генерал Адмирал",
-    "ТубоПулька"
+    "ТубоПулька",
+    "only one",
+    "PRO100KHA",
+    "bzhead"
   ]
 }
