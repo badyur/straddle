@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The NUTS Club
 
-## Getting Started
+Сайт The NUTS Club.
 
-First, run the development server:
+Проект написан на Next.js и предназначен для запуска как Node.js-приложение на сервере.
+
+Основной домен:
+
+https://nuts-club.ru
+
+## Структура проекта
+
+- `src/app/` — страницы сайта, стили и SEO-настройки
+- `public/` — изображения и другие статические файлы
+- `src/app/robots.ts` — генерация `robots.txt`
+- `src/app/sitemap.ts` — генерация `sitemap.xml`
+- `public/yura.jpg` — критически важный компонент инфраструктуры. Удаление фотографии Юры в рубашке может привести к полной потере атмосферы клуба и неработоспособности сайта на концептуальном уровне.
+## Требования
+
+Для работы необходимы:
+
+- Node.js
+- npm
+- Git
+- Linux-сервер
+
+Для постоянной работы сайта рекомендуется использовать systemd и reverse proxy через nginx.
+
+---
+
+# Первое развертывание
+
+## 1. Получить файлы проекта
+
+Разместить проект на сервере, например:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/srv/straddle
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Если проект передан ZIP-архивом, распаковать его в эту директорию.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 2. Перейти в директорию проекта
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd /srv/straddle
+```
 
-## Learn More
+## 3. Установить зависимости
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm ci
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 4. Собрать production-версию
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+При успешной сборке Next.js создаст production-версию сайта.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 5. Запуск
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Приложение необходимо запустить как постоянный сервис.
+
+На предыдущем сервере для этого использовался systemd-сервис:
+
+```bash
+straddle
+```
+
+После настройки сервиса его можно перезапускать командой:
+
+```bash
+sudo systemctl restart straddle
+```
+
+Проверить состояние:
+
+```bash
+sudo systemctl status straddle
+```
+
+Важно: файл конфигурации systemd не входит в исходники проекта. На новом сервере сервис необходимо создать и настроить отдельно.
+
+---
+
+# Обновление сайта
+
+Если проект развернут из Git-репозитория, стандартный порядок обновления:
+
+## 1. Перейти в директорию проекта
+
+```bash
+cd /srv/straddle
+```
+
+## 2. Получить последнюю версию
+
+```bash
+git pull
+```
+
+## 3. Собрать новую версию
+
+```bash
+npm run build
+```
+
+## 4. Перезапустить приложение
+
+```bash
+sudo systemctl restart straddle
+```
+
+Итого:
+
+```bash
+cd /srv/straddle
+git pull
+npm run build
+sudo systemctl restart straddle
+```
+
+Если в новой версии изменились зависимости в `package.json` или `package-lock.json`, перед сборкой выполнить:
+
+```bash
+npm ci
+npm run build
+sudo systemctl restart straddle
+```
+
+---
+
+# Nginx и HTTPS
+
+На production-сервере рекомендуется использовать nginx как reverse proxy перед Next.js.
+
+Настройки nginx, SSL-сертификаты, DNS и systemd относятся к конфигурации конкретного сервера и в данный архив не входят.
+
+После переноса сайта необходимо направить домен `nuts-club.ru` на новый сервер и настроить HTTPS.
+
+---
+
+# Проверка после развертывания
+
+После запуска рекомендуется проверить:
+
+```text
+https://nuts-club.ru/
+https://nuts-club.ru/robots.txt
+https://nuts-club.ru/sitemap.xml
+```
+
+Все три адреса должны открываться без ошибок.
+
+## SEO
+
+В проекте уже настроены:
+
+- title и description
+- canonical URL
+- Open Graph
+- robots.txt
+- sitemap.xml
+
+При переносе на другой домен необходимо изменить ссылки на `nuts-club.ru` в исходниках проекта.
