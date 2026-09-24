@@ -71,7 +71,7 @@ export default function Home() {
 
         <div className="heroBottom">
           <span>♠</span>
-          <span></span>
+          <span>Снято без применения ИИ</span>
           <span>♥</span>
         </div>
       </section>
@@ -88,10 +88,10 @@ export default function Home() {
           <div className="statementLines">
             <p>ОДИН ГОРОД.</p>
             <p>НЕСКОЛЬКО СТОЛОВ.</p>
-            <p className="gold">ОДИН ЮРА В РУБАШКЕ.</p>
+            <p className="gold">ОДНА РУБАШКА.</p>
           </div>
 
-          <p className="statementFootnote">карты и фишки.</p>
+          <p className="statementFootnote"></p>
         </div>
       </section>
 
@@ -168,19 +168,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* QUOTE */}
+      {/* YURA LEGEND */}
       <section className="quoteSection">
-        <div className="quoteSuit">♥</div>
+        <div className="quoteSuit" aria-hidden="true">
+          ♠
+        </div>
 
-        <blockquote>
-          «Карты раздаём.
-          <br />
-          За решения игроков
-          <br />
-          ответственности не несём».
-        </blockquote>
+        <p className="sectionLabel">Стильный Юра</p>
 
-        <p>— практически официальный принцип The NUTS Club</p>
+        <h2 className="legendTitle">
+          Юра
+          <br />
+          ЗА СТОЛОМ.
+          <br />
+          <span>ИНОГДА ДАЖЕ В РУБАШКЕ.</span>
+        </h2>
+
+        <p className="legendDescription">
+          В The NUTS Club играют самые разные люди. Некоторые приходят за
+          победой. Другие за общением. Юра однажды пришёл в рубашке, и теперь
+          про это есть сайт.
+        </p>
+
+        <p className="legendCaption">ПОСЛЕДСТВИЯ ОДНОЙ ФОТОГРАФИИ</p>
       </section>
 
       {/* FINAL CTA */}

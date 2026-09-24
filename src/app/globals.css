@@ -124,7 +124,7 @@ main {
 }
 
 .heroContent {
-  width: min(1200px, 90vw);
+  width: min(1400px, 90vw);
   margin: auto;
   padding: 80px 0;
 }
@@ -139,9 +139,10 @@ main {
 }
 
 .heroTitle {
-  margin: 20px 0 0;
-  font-size: clamp(72px, 9.2vw, 158px);
-  line-height: 0.86;
+  max-width: 660px;
+  margin: 22px 0 0;
+  font-size: clamp(76px, 8vw, 145px);
+  line-height: 1;
   letter-spacing: -0.065em;
   font-weight: 950;
   text-transform: uppercase;
@@ -151,22 +152,22 @@ main {
   display: block;
 }
 
-/*
-  Вторая строка больше не поднимается на первую.
-  Оставляем небольшой нормальный интервал.
-*/
 .heroTitle span:last-child {
-  margin-top: 0.08em;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+  margin-top: 12px;
+  font-size: 0.62em;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  color: var(--red-bright);
+  -webkit-text-stroke: 0;
+  white-space: nowrap;
 }
 
 .heroLead {
-  max-width: 680px;
-  margin: 38px 0 0;
-  font-size: clamp(18px, 1.6vw, 25px);
+  max-width: 570px;
+  margin: 35px 0 0;
+  font-size: clamp(18px, 1.5vw, 24px);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.83);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .heroActions {
@@ -269,7 +270,6 @@ main {
 
 /* =========================================================
    01 / ОСНОВНЫЕ ПРЕИМУЩЕСТВА
-   ОСТАВЛЕНО КАК БЫЛО
    ========================================================= */
 
 .why {
@@ -345,7 +345,6 @@ main {
 
 /* =========================================================
    02 / НЕМНОГО СЕРЬЁЗНОСТИ
-   ОСТАВЛЕНО КАК БЫЛО
    ========================================================= */
 
 .clubInfo {
@@ -439,46 +438,75 @@ main {
 }
 
 /* =========================================================
-   QUOTE
+   YURA LEGEND
    ========================================================= */
 
 .quoteSection {
   position: relative;
-  min-height: 760px;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   padding: 120px 7vw;
   background: #080808;
-  text-align: center;
+  text-align: left;
+  overflow: hidden;
 }
 
 .quoteSuit {
   position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -53%);
+  right: -5vw;
+  top: 50%;
+  transform: translateY(-50%);
   color: rgba(178, 14, 19, 0.14);
-  font-size: min(70vw, 800px);
+  font-size: min(60vw, 750px);
   line-height: 1;
+  user-select: none;
 }
 
-.quoteSection blockquote {
+.quoteSection .sectionLabel {
   position: relative;
   z-index: 2;
-  margin: 0 auto;
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
-  font-size: clamp(38px, 5.5vw, 84px);
-  line-height: 1.08;
+  margin: 0 0 28px;
+}
+
+.legendTitle {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: clamp(55px, 7vw, 110px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+  font-weight: 950;
+}
+
+.legendTitle span {
+  display: block;
+  margin-top: 15px;
+  color: var(--red-bright);
+  font-size: 0.58em;
+  line-height: 1.12;
   letter-spacing: -0.035em;
 }
 
-.quoteSection p {
+.legendDescription {
   position: relative;
   z-index: 2;
-  margin-top: 42px;
+  max-width: 650px;
+  margin: 45px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(18px, 1.7vw, 25px);
+  line-height: 1.55;
+}
+
+.legendCaption {
+  position: relative;
+  z-index: 2;
+  margin: 50px 0 0;
   color: var(--gold);
   font-size: 10px;
+  font-weight: 900;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -508,10 +536,6 @@ main {
   font-size: 16px;
 }
 
-/*
-  На десктопе теперь заголовок и текст —
-  две независимые колонки.
-*/
 .finalCta h2 {
   width: 58%;
   margin: 70px 0 55px;
@@ -521,7 +545,7 @@ main {
 }
 
 .finalCopy {
-  width: 50%;
+  width: 58%;
   margin-left: 42%;
   font-size: clamp(23px, 2.5vw, 40px);
   line-height: 1.38;
@@ -620,7 +644,7 @@ footer span {
 
 @media (max-width: 1100px) and (min-width: 851px) {
   .heroTitle {
-    font-size: clamp(78px, 10vw, 120px);
+    font-size: clamp(72px, 9vw, 115px);
   }
 
   .finalCta h2 {
@@ -641,12 +665,7 @@ footer span {
    ========================================================= */
 
 @media (max-width: 850px) {
-  /*
-    HERO:
-    фотография занимает верх,
-    текст располагается ниже лица,
-    поэтому Юра больше не воюет с буквами.
-  */
+  /* HERO */
 
   .hero {
     min-height: 100svh;
@@ -692,21 +711,23 @@ footer span {
   }
 
   .heroTitle {
+    max-width: 100%;
     margin-top: 12px;
-    font-size: clamp(57px, 17vw, 92px);
-    line-height: 0.88;
+    font-size: clamp(65px, 18vw, 110px);
+    line-height: 1;
     letter-spacing: -0.06em;
   }
 
   .heroTitle span:last-child {
-    margin-top: 0.1em;
-    color: var(--red-bright);
-    -webkit-text-stroke: 0;
+    margin-top: 8px;
+    font-size: 0.58em;
+    line-height: 1.15;
+    white-space: normal;
   }
 
   .heroLead {
     max-width: 440px;
-    margin-top: 26px;
+    margin-top: 25px;
     font-size: 16px;
     line-height: 1.45;
   }
@@ -731,9 +752,7 @@ footer span {
     letter-spacing: 0.16em;
   }
 
-  /*
-    STATEMENT
-  */
+  /* STATEMENT */
 
   .statement {
     min-height: auto;
@@ -762,9 +781,7 @@ footer span {
     font-size: 115vw;
   }
 
-  /*
-    01 — прежняя мобильная версия
-  */
+  /* 01 — оставляем как было */
 
   .why {
     padding: 90px 5vw;
@@ -787,9 +804,7 @@ footer span {
     font-size: clamp(21px, 6vw, 34px);
   }
 
-  /*
-    02 — прежняя мобильная версия
-  */
+  /* 02 — оставляем как было */
 
   .clubInfo {
     grid-template-columns: 1fr;
@@ -815,28 +830,39 @@ footer span {
     gap: 35px;
   }
 
-  /*
-    QUOTE
-  */
+  /* YURA LEGEND */
 
   .quoteSection {
-    min-height: 590px;
-    padding: 85px 7vw;
+    min-height: auto;
+    padding: 100px 6vw;
   }
 
-  .quoteSection blockquote {
-    font-size: clamp(35px, 10vw, 55px);
+  .quoteSuit {
+    right: -25vw;
+    font-size: 120vw;
   }
 
-  .quoteSection p {
+  .legendTitle {
+    font-size: clamp(48px, 11vw, 78px);
+  }
+
+  .legendTitle span {
+    margin-top: 12px;
+    font-size: 0.58em;
+  }
+
+  .legendDescription {
+    margin-top: 35px;
+    font-size: 18px;
+  }
+
+  .legendCaption {
+    margin-top: 40px;
     font-size: 8px;
     line-height: 1.6;
   }
 
-  /*
-    FINAL:
-    на телефоне всё становится одной колонкой.
-  */
+  /* FINAL */
 
   .finalCta {
     padding: 38px 5vw 60px;
@@ -887,9 +913,7 @@ footer span {
     font-size: 9px;
   }
 
-  /*
-    FOOTER
-  */
+  /* FOOTER */
 
   footer {
     min-height: 145px;
@@ -906,7 +930,9 @@ footer span {
   }
 }
 
-/* Очень узкие телефоны */
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
 
 @media (max-width: 430px) {
   .heroContent {
@@ -914,11 +940,19 @@ footer span {
   }
 
   .heroTitle {
-    font-size: clamp(52px, 16.5vw, 72px);
+    font-size: 17vw;
+  }
+
+  .heroTitle span:last-child {
+    font-size: 0.57em;
   }
 
   .statementLines p {
     font-size: 13.5vw;
+  }
+
+  .legendTitle {
+    font-size: 11vw;
   }
 
   .finalCta h2 {
